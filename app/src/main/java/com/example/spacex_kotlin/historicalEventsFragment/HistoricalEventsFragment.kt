@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.historicalEventsFragment.groupie.ItemHistoricalEvents
 import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import kotlinx.android.synthetic.main.historical_events_fragment.*
 
@@ -35,14 +36,17 @@ class HistoricalEventsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HistoricalEventsViewModel::class.java)
 
-        val listaTych: MutableList<ItemHistoricalEvents> = mutableListOf(ItemHistoricalEvents("1", "asdd"), ItemHistoricalEvents("2", "asdd"))
-        val group_adapter = GroupAdapter<GroupieViewHolder>()
+        val listaTych: MutableList<ItemHistoricalEvents> = mutableListOf(ItemHistoricalEvents("1", "asdd"), ItemHistoricalEvents("2", "asdd")
+            , ItemHistoricalEvents("3", "asdd"), ItemHistoricalEvents("4", "asdd"), ItemHistoricalEvents("5", "asdd"), ItemHistoricalEvents("6", "asdd"))
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
+
 
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL ,false)
-            adapter = group_adapter
+            adapter = groupAdapter
         }
-        
+        val section : Section = Section(listaTych)
+        groupAdapter.add(section)
 
         // TODO: Use the ViewModel
     }
