@@ -1,4 +1,4 @@
-package com.example.spacex_kotlin.missionsFragment
+package com.example.spacex_kotlin.missionsFragment.details
 
 import androidx.lifecycle.ViewModel
 

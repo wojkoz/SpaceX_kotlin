@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.spacex_kotlin.R
-import com.example.spacex_kotlin.historicalEventsFragment.groupie.ItemHistoricalEvents
+import com.example.spacex_kotlin.groupie.ItemGroupie
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
@@ -36,8 +36,15 @@ class HistoricalEventsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HistoricalEventsViewModel::class.java)
 
-        val listaTych: MutableList<ItemHistoricalEvents> = mutableListOf(ItemHistoricalEvents("1", "asdd"), ItemHistoricalEvents("2", "asdd")
-            , ItemHistoricalEvents("3", "asdd"), ItemHistoricalEvents("4", "asdd"), ItemHistoricalEvents("5", "asdd"), ItemHistoricalEvents("6", "asdd"))
+        val listaTyches: MutableList<ItemGroupie> = mutableListOf(
+            ItemGroupie("1", "asdd"),
+            ItemGroupie("2", "asdd")
+            ,
+            ItemGroupie("3", "asdd"),
+            ItemGroupie("4", "asdd"),
+            ItemGroupie("5", "asdd"),
+            ItemGroupie("6", "asdd")
+        )
         val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
 
@@ -45,7 +52,7 @@ class HistoricalEventsFragment : Fragment() {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL ,false)
             adapter = groupAdapter
         }
-        val section : Section = Section(listaTych)
+        val section = Section(listaTyches)
         groupAdapter.add(section)
 
         // TODO: Use the ViewModel

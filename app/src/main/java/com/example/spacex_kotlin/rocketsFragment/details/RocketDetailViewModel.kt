@@ -1,4 +1,4 @@
-package com.example.spacex_kotlin.rocketsFragment
+package com.example.spacex_kotlin.rocketsFragment.details
 
 import androidx.lifecycle.ViewModel
 

@@ -4,19 +4,19 @@
     <group>
         <item
             android:id="@+id/launchesFragment"
-            android:title="Launches"/>
+            android:title="@string/launches" />
         <item
             android:id="@+id/missionsFragment"
-            android:title="Missions"/>
+            android:title="@string/missions"/>
         <item
             android:id="@+id/historicalEventsFragment"
-            android:title="Historical Events"/>
+            android:title="@string/historical_events"/>
         <item
             android:id="@+id/rocketsFragment"
-            android:title="Rockets"/>
+            android:title="@string/rockets"/>
         <item
             android:id="@+id/roadsterFragment"
-            android:title="Roadster"/>
+            android:title="@string/roadster"/>
     </group>
 
 </menu>
