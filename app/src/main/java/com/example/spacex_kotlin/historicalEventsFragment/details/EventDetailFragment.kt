@@ -1,4 +1,4 @@
-package com.example.spacex_kotlin.historicalEventsFragment
+package com.example.spacex_kotlin.historicalEventsFragment.details
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -12,7 +12,8 @@ import com.example.spacex_kotlin.R
 class EventDetailFragment : Fragment() {
 
     companion object {
-        fun newInstance() = EventDetailFragment()
+        fun newInstance() =
+            EventDetailFragment()
     }
 
     private lateinit var detailViewModel: EventDetailViewModel

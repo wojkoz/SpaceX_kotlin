@@ -1,4 +1,4 @@
-package com.example.spacex_kotlin.launchesFragment
+package com.example.spacex_kotlin.rocketsFragment.details
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,24 +9,25 @@ import android.view.ViewGroup
 
 import com.example.spacex_kotlin.R
 
-class LaunchDetailFragment : Fragment() {
+class RocketDetailFragment : Fragment() {
 
     companion object {
-        fun newInstance() = LaunchDetailFragment()
+        fun newInstance() =
+            RocketDetailFragment()
     }
 
-    private lateinit var detailViewModel: LaunchDetailViewModel
+    private lateinit var viewModel: RocketDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.launch_detail_fragment, container, false)
+        return inflater.inflate(R.layout.rocket_detail_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        detailViewModel = ViewModelProviders.of(this).get(LaunchDetailViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(RocketDetailViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
