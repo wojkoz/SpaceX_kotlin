@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+
         //drawer
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -37,6 +39,11 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+
+        nav_view?.let {
+            NavigationUI.setupWithNavController(it, navController)
+        }
+
         navView.setNavigationItemSelectedListener(this)
 
 
@@ -44,28 +51,10 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
 
-    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-
-        when (menuItem.itemId) {
-            R.id.historicalEventsFragment -> {
-                Toast.makeText(this, "historicalEventsFragment", Toast.LENGTH_SHORT).show()
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.historicalEventsFragment)
-            }
-            R.id.missionsFragment -> {
-                Toast.makeText(this, "missionsFragment", Toast.LENGTH_SHORT).show()
-            }
-            R.id.rocketsFragment -> {
-                Toast.makeText(this, "rocketsFragment", Toast.LENGTH_SHORT).show()
-            }
-            R.id.launchesFragment -> {
-                Toast.makeText(this, "launchesFragment", Toast.LENGTH_SHORT).show()
-            }
-            R.id.roadsterFragment -> {
-                Toast.makeText(this, "roadsterFragment", Toast.LENGTH_SHORT).show()
-            }
-        }
-        drawer_layout.closeDrawer(GravityCompat.START)
-        return true
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val navigated = NavigationUI.onNavDestinationSelected(item!!, navController)
+        return navigated || super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
