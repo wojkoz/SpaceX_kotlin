@@ -77,8 +77,9 @@ dependencies {
 
     def groupie_ver = "2.7.0"
     //groupie
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.xwray:groupie:$groupie_ver"
     implementation "com.xwray:groupie-kotlin-android-extensions:$groupie_ver"
+
+
 
 }

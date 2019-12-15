@@ -1,4 +1,4 @@
-package com.example.spacex_kotlin.historicalEventsFragment
+package com.example.spacex_kotlin.historicalEventsFragment.details
 
 import androidx.lifecycle.ViewModel
 

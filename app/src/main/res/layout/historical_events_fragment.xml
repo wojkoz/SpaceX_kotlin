@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".historicalEventsFragment.HistoricalEventsFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:text="Hello" />
+    <android.support.v7.widget.RecyclerView
+    android:id="@+id/recycler_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    />
 
 </FrameLayout>
