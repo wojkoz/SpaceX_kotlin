@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/historicalEventsFragment">
+    <fragment
+        android:id="@+id/historicalEventsFragment"
+        android:name="com.example.spacex_kotlin.historicalEventsFragment.HistoricalEventsFragment"
+        android:label="historical_events_fragment"
+        tools:layout="@layout/historical_events_fragment" />
+    <fragment
+        android:id="@+id/launchesFragment"
+        android:name="com.example.spacex_kotlin.launchesFragment.LaunchesFragment"
+        android:label="launches_fragment"
+        tools:layout="@layout/launches_fragment" />
+    <fragment
+        android:id="@+id/missionsFragment"
+        android:name="com.example.spacex_kotlin.missionsFragment.MissionsFragment"
+        android:label="missions_fragment"
+        tools:layout="@layout/missions_fragment" />
+    <fragment
+        android:id="@+id/roadsterDetailFragment"
+        android:name="com.example.spacex_kotlin.roadsterFragment.RoadsterDetailFragment"
+        android:label="roadster_fragment"
+        tools:layout="@layout/roadster_fragment" />
+    <fragment
+        android:id="@+id/rocketsFragment"
+        android:name="com.example.spacex_kotlin.rocketsFragment.RocketsFragment"
+        android:label="rockets_fragment"
+        tools:layout="@layout/rockets_fragment" />
+</navigation>

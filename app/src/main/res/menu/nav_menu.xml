@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/launchesFragment"
+            android:title="Launches"/>
+        <item
+            android:id="@+id/missionsFragment"
+            android:title="Missions"/>
+        <item
+            android:id="@+id/historicalEventsFragment"
+            android:title="Historical Events"/>
+        <item
+            android:id="@+id/rocketsFragment"
+            android:title="Rockets"/>
+        <item
+            android:id="@+id/roadsterFragment"
+            android:title="Roadster"/>
+    </group>
+
+</menu>
