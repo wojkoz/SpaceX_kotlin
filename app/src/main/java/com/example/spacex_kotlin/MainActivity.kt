@@ -15,6 +15,10 @@ import androidx.navigation.ui.NavigationUI
 import com.example.spacex_kotlin.historicalEventsFragment.HistoricalEventsFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidFileProperties
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener{
 
@@ -24,6 +28,20 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        startKoin {
+            // use AndroidLogger as Koin Logger - default Level.INFO
+            androidLogger()
+
+            // use the Android context given there
+            androidContext(this@MainActivity)
+
+            // load properties from assets/koin.properties file
+            androidFileProperties()
+
+            // module list
+            modules(listOf(repositoryModule, viewModelModule, retrofitModule, apiModule))
+        }
 
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
