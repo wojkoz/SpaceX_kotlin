@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -24,7 +26,8 @@ class RocketsFragment : Fragment() {
 
 
     private val rocketsViewModel by viewModel<RocketsViewModel>()
-    lateinit var listaTych: List<Rocket>
+    lateinit var listaTych: MutableList<Rocket>
+    val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +40,9 @@ class RocketsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         rocketsViewModel.data.observe(this, Observer {
-            listaTych = it;
+            listaTych = it as MutableList<Rocket>
+            Toast.makeText(context,listaTych[0].rocketName,Toast.LENGTH_LONG)
+            updateRecycler(listaTych)
         })
 
         val listaTyches: MutableList<ItemGroupie> = mutableListOf(
@@ -49,17 +54,25 @@ class RocketsFragment : Fragment() {
             ItemGroupie("5", "asdd"),
             ItemGroupie("6", "asdd")
         )
-        val groupAdapter = GroupAdapter<GroupieViewHolder>()
+
 
 
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL ,false)
             adapter = groupAdapter
         }
-        val section = Section(listaTych as MutableCollection<out Group>)
+
+        val section = Section()
+        section.addAll(listaTyches)
         groupAdapter.add(section)
 
         // TODO: Use the ViewModel
+    }
+
+    private fun updateRecycler(items: MutableList<Rocket>){
+        val recList = items.map { item -> ItemGroupie(item.rocketName, item.description) }
+        groupAdapter.clear()
+        groupAdapter.add(Section(recList))
     }
 
 }

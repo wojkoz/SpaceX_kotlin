@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class HeightX(
     @Json(name = "feet")
-    val feet: Int,
+    val feet: Any?,
     @Json(name = "meters")
-    val meters: Double
+    val meters: Any?
 )

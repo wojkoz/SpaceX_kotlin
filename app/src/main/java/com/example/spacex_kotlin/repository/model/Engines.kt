@@ -7,9 +7,9 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Engines(
     @Json(name = "engine_loss_max")
-    val engineLossMax: Int,
+    val engineLossMax: Any?,
     @Json(name = "layout")
-    val layout: String,
+    val layout: Any?,
     @Json(name = "number")
     val number: Int,
     @Json(name = "propellant_1")
@@ -19,7 +19,7 @@ data class Engines(
     @Json(name = "thrust_sea_level")
     val thrustSeaLevel: ThrustSeaLevel,
     @Json(name = "thrust_to_weight")
-    val thrustToWeight: Double,
+    val thrustToWeight: Any?,
     @Json(name = "thrust_vacuum")
     val thrustVacuum: ThrustVacuum,
     @Json(name = "type")

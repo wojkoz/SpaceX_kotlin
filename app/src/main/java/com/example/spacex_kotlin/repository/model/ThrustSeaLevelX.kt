@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class ThrustSeaLevelX(
     @Json(name = "kN")
-    val kN: Int,
+    val kN: Double,
     @Json(name = "lbf")
-    val lbf: Int
+    val lbf: Double
 )

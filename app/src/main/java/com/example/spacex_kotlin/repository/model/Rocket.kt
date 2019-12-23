@@ -10,7 +10,8 @@ data class Rocket(
     val active: Boolean,
     @Json(name = "boosters")
     val boosters: Int,
-
+    @Json(name = "company")
+    val company: String,
     @Json(name = "cost_per_launch")
     val costPerLaunch: Int,
     @Json(name = "country")
@@ -21,17 +22,20 @@ data class Rocket(
     val diameter: Diameter,
     @Json(name = "engines")
     val engines: Engines,
-
+    @Json(name = "first_flight")
+    val firstFlight: String,
     @Json(name = "first_stage")
     val firstStage: FirstStage,
     @Json(name = "height")
     val height: Height,
     @Json(name = "id")
     val id: Int,
-
+    @Json(name = "landing_legs")
+    val landingLegs: LandingLegs,
     @Json(name = "mass")
     val mass: Mass,
-
+    @Json(name = "payload_weights")
+    val payloadWeights: List<PayloadWeight>,
     @Json(name = "rocket_id")
     val rocketId: String,
     @Json(name = "rocket_name")

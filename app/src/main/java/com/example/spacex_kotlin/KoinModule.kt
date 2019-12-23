@@ -4,6 +4,7 @@ import com.example.spacex_kotlin.repository.SpacexApi
 import com.example.spacex_kotlin.repository.SpacexRepository
 import com.example.spacex_kotlin.rocketsFragment.RocketsViewModel
 import com.example.spacex_kotlin.rocketsFragment.details.RocketDetailViewModel
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -23,31 +24,21 @@ val repositoryModule = module {
     }
 }
 
-val apiModule = module {
-    fun provideUseApi(retrofit: Retrofit): SpacexApi {
-        return retrofit.create(SpacexApi::class.java)
-    }
-
-    single { provideUseApi(get()) }
-}
 
 val retrofitModule = module {
 
 
-    fun provideHttpClient(): OkHttpClient {
-        val okHttpClientBuilder = OkHttpClient.Builder()
+    fun provideSpacexApi() : SpacexApi {
 
-        return okHttpClientBuilder.build()
-    }
-
-    fun provideRetrofit(client: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
             .baseUrl("https://api.spacexdata.com/v3/")
             .addConverterFactory(MoshiConverterFactory.create())
-            .client(client)
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
+
+        return retrofit.create(SpacexApi::class.java)
     }
 
-    single { provideHttpClient() }
-    single { provideRetrofit(get()) }
+    single { provideSpacexApi() }
+
 }

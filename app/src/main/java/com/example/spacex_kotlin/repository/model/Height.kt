@@ -9,5 +9,5 @@ data class Height(
     @Json(name = "feet")
     val feet: Double,
     @Json(name = "meters")
-    val meters: Int
+    val meters: Double
 )
