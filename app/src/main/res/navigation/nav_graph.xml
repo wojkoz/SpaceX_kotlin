@@ -28,5 +28,18 @@
         android:id="@+id/rocketsFragment"
         android:name="com.example.spacex_kotlin.rocketsFragment.RocketsFragment"
         android:label="rockets_fragment"
-        tools:layout="@layout/rockets_fragment" />
+        tools:layout="@layout/rockets_fragment" >
+        <action
+            android:id="@+id/action_rocketsFragment_to_rocketDetailFragment2"
+            app:destination="@id/rocketDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rocketDetailFragment"
+        android:name="com.example.spacex_kotlin.rocketsFragment.details.RocketDetailFragment"
+        android:label="rocket_detail_fragment"
+        tools:layout="@layout/rocket_detail_fragment" >
+        <argument
+            android:name="rocket_id"
+            app:argType="string" />
+    </fragment>
 </navigation>

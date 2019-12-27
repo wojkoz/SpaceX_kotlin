@@ -7,13 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.groupie.ItemGroupie
 import com.example.spacex_kotlin.repository.model.Rocket
+import com.example.spacex_kotlin.rocketsFragment.details.RocketDetailFragment
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
@@ -73,6 +80,11 @@ class RocketsFragment : Fragment() {
         val recList = items.map { item -> ItemGroupie(item.rocketName, item.description) }
         groupAdapter.clear()
         groupAdapter.add(Section(recList))
+
+        groupAdapter.setOnItemClickListener { item, view ->
+            val action = RocketsFragmentDirections.actionRocketsFragmentToRocketDetailFragment2(item.id.toString())
+            view.findNavController().navigate(action)
+            }
     }
 
 }
