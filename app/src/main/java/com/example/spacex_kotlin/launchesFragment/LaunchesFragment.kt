@@ -1,13 +1,12 @@
 package com.example.spacex_kotlin.launchesFragment
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.groupie.ItemGroupie
 import com.xwray.groupie.GroupAdapter
@@ -35,13 +34,8 @@ class LaunchesFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(LaunchesViewModel::class.java)
 
         val listaTyches: MutableList<ItemGroupie> = mutableListOf(
-            ItemGroupie("1", "asdd"),
-            ItemGroupie("2", "asdd")
-            ,
-            ItemGroupie("3", "asdd"),
-            ItemGroupie("4", "asdd"),
-            ItemGroupie("5", "asdd"),
-            ItemGroupie("6", "asdd")
+            ItemGroupie("1", "asdd", "asd")
+
         )
         val groupAdapter = GroupAdapter<GroupieViewHolder>()
 

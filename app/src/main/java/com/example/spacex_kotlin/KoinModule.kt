@@ -5,8 +5,6 @@ import com.example.spacex_kotlin.repository.SpacexRepository
 import com.example.spacex_kotlin.rocketsFragment.RocketsViewModel
 import com.example.spacex_kotlin.rocketsFragment.details.RocketDetailViewModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.squareup.moshi.Moshi
-import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -16,6 +14,7 @@ val viewModelModule = module{
     viewModel{
         RocketsViewModel(get())
     }
+    viewModel { (id: String) -> RocketDetailViewModel(id, get()) }
 }
 
 val repositoryModule = module {
@@ -36,6 +35,7 @@ val retrofitModule = module {
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 
+        // Create Retrofit client
         return retrofit.create(SpacexApi::class.java)
     }
 

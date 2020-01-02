@@ -1,5 +1,6 @@
 package com.example.spacex_kotlin.repository
 
 class SpacexRepository(private val api: SpacexApi) {
-    suspend fun getAllRockets() = api.getRockets()
+    fun getAllRocketsAsync() = api.getRocketsAsync()
+    fun getRocketDetailAsync(id: String) = api.getRocketDetailAsync(id)
 }

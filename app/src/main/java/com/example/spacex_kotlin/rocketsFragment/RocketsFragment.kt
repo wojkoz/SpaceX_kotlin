@@ -1,40 +1,30 @@
 package com.example.spacex_kotlin.rocketsFragment
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
-import androidx.lifecycle.MutableLiveData
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.NavDestination
-import androidx.navigation.NavDirections
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-
+import com.example.spacex_kotlin.LoadingState
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.groupie.ItemGroupie
 import com.example.spacex_kotlin.repository.model.Rocket
-import com.example.spacex_kotlin.rocketsFragment.details.RocketDetailFragment
-import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import kotlinx.android.synthetic.main.historical_events_fragment.*
+import kotlinx.android.synthetic.main.item_groupie.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RocketsFragment : Fragment() {
 
-
-
-    private val rocketsViewModel by viewModel<RocketsViewModel>()
-    lateinit var listaTych: MutableList<Rocket>
-    val groupAdapter = GroupAdapter<GroupieViewHolder>()
+    private val rocketsViewModel: RocketsViewModel by viewModel()
+    lateinit var rocketsList: MutableList<Rocket>
+    private val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,21 +37,23 @@ class RocketsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         rocketsViewModel.data.observe(this, Observer {
-            listaTych = it as MutableList<Rocket>
-            Toast.makeText(context,listaTych[0].rocketName,Toast.LENGTH_LONG)
-            updateRecycler(listaTych)
+            rocketsList = it as MutableList<Rocket>
+            updateRecycler(rocketsList)
         })
 
-        val listaTyches: MutableList<ItemGroupie> = mutableListOf(
-            ItemGroupie("1", "asdd"),
-            ItemGroupie("2", "asdd")
-            ,
-            ItemGroupie("3", "asdd"),
-            ItemGroupie("4", "asdd"),
-            ItemGroupie("5", "asdd"),
-            ItemGroupie("6", "asdd")
-        )
+        rocketsViewModel.loadingState.observe(this, Observer {
+            when (it) {
+                LoadingState.LOADING -> {
+                    Toast.makeText(context,"Loading data", Toast.LENGTH_SHORT).show()
+                }
+                LoadingState.LOADED -> {
 
+                }
+                else -> {
+                    Toast.makeText(context, it.msg, Toast.LENGTH_LONG).show()
+                }
+            }
+        })
 
 
         recycler_view.apply {
@@ -70,19 +62,18 @@ class RocketsFragment : Fragment() {
         }
 
         val section = Section()
-        section.addAll(listaTyches)
+        //section.addAll() //fetch from ROOM
         groupAdapter.add(section)
 
-        // TODO: Use the ViewModel
     }
 
     private fun updateRecycler(items: MutableList<Rocket>){
-        val recList = items.map { item -> ItemGroupie(item.rocketName, item.description) }
+        val recList = items.map { item -> ItemGroupie(item.rocketName, item.description, item.rocketId) }
         groupAdapter.clear()
         groupAdapter.add(Section(recList))
 
         groupAdapter.setOnItemClickListener { item, view ->
-            val action = RocketsFragmentDirections.actionRocketsFragmentToRocketDetailFragment2(item.id.toString())
+            val action = RocketsFragmentDirections.actionRocketsFragmentToRocketDetailFragment2(view.item_id.text.toString())
             view.findNavController().navigate(action)
             }
     }
