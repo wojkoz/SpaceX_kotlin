@@ -11,8 +11,8 @@ import retrofit2.http.Path
 interface SpacexApi {
 
     @GET("rockets")
-    fun getRocketsAsync(): Deferred<Response<List<Rocket>>>
+    suspend fun getRocketsAsync(): List<Rocket>
 
     @GET("rockets/{id}")
-    fun getRocketDetailAsync(@Path("id") id: String): Deferred<Response<Rocket>>
+    suspend fun getRocketDetailAsync(@Path("id") id: String): Rocket
 }

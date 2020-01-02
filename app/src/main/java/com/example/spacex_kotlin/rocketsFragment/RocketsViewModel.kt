@@ -7,9 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.spacex_kotlin.LoadingState
 import com.example.spacex_kotlin.repository.SpacexRepository
 import com.example.spacex_kotlin.repository.model.Rocket
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class RocketsViewModel(private val repo: SpacexRepository) : ViewModel() {
 
@@ -21,36 +19,36 @@ class RocketsViewModel(private val repo: SpacexRepository) : ViewModel() {
     val data: LiveData<List<Rocket>>
         get() = _data
 
+    private val completableJob = Job()
+    private val coroutineScope = CoroutineScope(Dispatchers.IO + completableJob)
+
     init {
         fetchData()
     }
 
+
     private fun fetchData(){
         _loadingState.postValue(LoadingState.LOADING)
-        //add if/else when there is no internet connection(load from ROOM)
-        loadRocketList()
-    }
 
-    private fun loadRocketList() {
-        // Launch Kotlin Coroutine on Android's main thread
-        GlobalScope.launch(Dispatchers.Main) {
-            // Execute web request through coroutine call adapter & retrofit
-            val webResponse = repo.getAllRocketsAsync().await()
+        coroutineScope.launch {
+            try {
+                val webResponse = repo.getAllRocketsAsync()
+                withContext(Dispatchers.Main){
+                    _data.value = webResponse
+                }
 
-            if (webResponse.isSuccessful) {
-
-                val rocketList : List<Rocket>? = webResponse.body()
-                Log.d("RocketsViewModel", "Rocket List")
-
-                _data.value = rocketList
-                _loadingState.postValue(LoadingState.LOADED)
-
-            } else {
-                _loadingState.postValue(LoadingState.error(webResponse.message()))
-                // Print error information to the console
-                Log.d("RocketsViewModel", "Error ${webResponse.code()}")
+            }catch (e: Throwable){
+                Log.e("RocketsViewModel","coroutines API Request", e)
+                _loadingState.postValue(LoadingState.error(e.message))
             }
+
         }
+        _loadingState.postValue(LoadingState.LOADED)
     }
 
+
+    override fun onCleared() {
+        super.onCleared()
+        completableJob.cancel()
+    }
 }

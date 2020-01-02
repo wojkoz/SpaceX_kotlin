@@ -72,7 +72,7 @@ class RocketsFragment : Fragment() {
         groupAdapter.clear()
         groupAdapter.add(Section(recList))
 
-        groupAdapter.setOnItemClickListener { item, view ->
+        groupAdapter.setOnItemClickListener { _, view ->
             val action = RocketsFragmentDirections.actionRocketsFragmentToRocketDetailFragment2(view.item_id.text.toString())
             view.findNavController().navigate(action)
             }
