@@ -1,6 +1,7 @@
-package com.example.spacex_kotlin.repository.model
+package com.example.spacex_kotlin.repository.model.retrofit
 
 
+import com.example.spacex_kotlin.repository.model.retrofit.CompositeFairing
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

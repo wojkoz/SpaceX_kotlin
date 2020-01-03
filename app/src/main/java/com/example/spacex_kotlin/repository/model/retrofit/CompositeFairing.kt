@@ -1,4 +1,4 @@
-package com.example.spacex_kotlin.repository.model
+package com.example.spacex_kotlin.repository.model.retrofit
 
 
 import com.squareup.moshi.Json

@@ -1,21 +1,19 @@
-package com.example.spacex_kotlin.repository.model
+package com.example.spacex_kotlin.repository.model.retrofit
 
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class FirstStage(
+data class SecondStage(
     @Json(name = "burn_time_sec")
     val burnTimeSec: Double?,
     @Json(name = "engines")
     val engines: Double,
     @Json(name = "fuel_amount_tons")
     val fuelAmountTons: Double,
-    @Json(name = "reusable")
-    val reusable: Boolean,
-    @Json(name = "thrust_sea_level")
-    val thrustSeaLevel: ThrustSeaLevelX,
-    @Json(name = "thrust_vacuum")
-    val thrustVacuum: ThrustVacuumX
+    @Json(name = "payloads")
+    val payloads: Payloads,
+    @Json(name = "thrust")
+    val thrust: Thrust
 )

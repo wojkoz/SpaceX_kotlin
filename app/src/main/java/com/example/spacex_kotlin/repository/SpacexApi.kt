@@ -1,8 +1,6 @@
 package com.example.spacex_kotlin.repository
 
-import com.example.spacex_kotlin.repository.model.Rocket
-import kotlinx.coroutines.Deferred
-import retrofit2.Response
+import com.example.spacex_kotlin.repository.model.retrofit.Rocket
 
 
 import retrofit2.http.GET

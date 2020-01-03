@@ -1,11 +1,11 @@
-package com.example.spacex_kotlin.repository.model
+package com.example.spacex_kotlin.repository.model.retrofit
 
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ThrustVacuumX(
+data class ThrustSeaLevel(
     @Json(name = "kN")
     val kN: Double,
     @Json(name = "lbf")

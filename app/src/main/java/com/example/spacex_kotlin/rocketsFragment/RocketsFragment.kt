@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spacex_kotlin.LoadingState
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.groupie.ItemGroupie
-import com.example.spacex_kotlin.repository.model.Rocket
+import com.example.spacex_kotlin.repository.model.retrofit.Rocket
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder

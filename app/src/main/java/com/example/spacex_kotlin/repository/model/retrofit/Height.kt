@@ -1,13 +1,13 @@
-package com.example.spacex_kotlin.repository.model
+package com.example.spacex_kotlin.repository.model.retrofit
 
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class HeightX(
+data class Height(
     @Json(name = "feet")
-    val feet: Any?,
+    val feet: Double,
     @Json(name = "meters")
-    val meters: Any?
+    val meters: Double
 )

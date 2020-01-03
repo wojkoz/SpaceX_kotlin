@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.spacex_kotlin.LoadingState
 import com.example.spacex_kotlin.repository.SpacexRepository
-import com.example.spacex_kotlin.repository.model.Rocket
+import com.example.spacex_kotlin.repository.model.retrofit.Rocket
 import kotlinx.coroutines.*
 
 
