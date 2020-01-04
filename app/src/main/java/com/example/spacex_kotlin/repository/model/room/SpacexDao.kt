@@ -11,9 +11,10 @@ interface SpacexDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addRocket(rocket: Rocket)
 
-    @Query("SELECT * FROM rocket_table")
-    fun getRockets(): LiveData<List<Rocket>>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addRocketsFromList(rockets: List<Rocket>)
 
-    @Query("DELETE FROM rocket_table")
-    fun deleteAllRockets()
+    @Query("SELECT * FROM rocket_table")
+    fun getRockets(): LiveData<List<Rocket>>?
+
 }

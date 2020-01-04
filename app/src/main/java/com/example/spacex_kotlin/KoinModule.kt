@@ -2,6 +2,7 @@ package com.example.spacex_kotlin
 
 import com.example.spacex_kotlin.repository.SpacexApi
 import com.example.spacex_kotlin.repository.SpacexRepository
+import com.example.spacex_kotlin.repository.model.SpacexDatabase
 import com.example.spacex_kotlin.rocketsFragment.RocketsViewModel
 import com.example.spacex_kotlin.rocketsFragment.details.RocketDetailViewModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -19,7 +20,7 @@ val viewModelModule = module{
 
 val repositoryModule = module {
     single {
-        SpacexRepository(get())
+        SpacexRepository(get(), get())
     }
 }
 
@@ -41,4 +42,8 @@ val retrofitModule = module {
 
     single { provideSpacexApi() }
 
+}
+
+val roomModule = module{
+    single { SpacexDatabase.getDatabase(get()) }
 }
