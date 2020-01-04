@@ -1,16 +1,17 @@
-package com.example.spacex_kotlin.repository.model
+package com.example.spacex_kotlin.repository.model.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.spacex_kotlin.repository.model.room.Rocket
-import com.example.spacex_kotlin.repository.model.room.SpacexDao
+import com.example.spacex_kotlin.repository.model.room.rocket.Rocket
+import com.example.spacex_kotlin.repository.model.room.rocket.RocketDao
+import com.example.spacex_kotlin.repository.model.room.rocket.RocketDetail
 
-@Database(entities = [Rocket::class], version = 1, exportSchema = false)
+@Database(entities = [Rocket::class, RocketDetail::class], version = 2, exportSchema = false)
 abstract class SpacexDatabase : RoomDatabase(){
 
-    abstract fun spacexDao(): SpacexDao
+    abstract fun rocketDao(): RocketDao
 
     companion object {
 
@@ -25,6 +26,7 @@ abstract class SpacexDatabase : RoomDatabase(){
                             context.applicationContext,
                             SpacexDatabase::class.java, "spacex_database"
                         )
+                            .fallbackToDestructiveMigration()
                             .build()
                     }
                 }

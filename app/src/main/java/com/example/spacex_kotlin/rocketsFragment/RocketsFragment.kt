@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spacex_kotlin.LoadingState
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.groupie.ItemGroupie
-import com.example.spacex_kotlin.repository.model.room.Rocket
+import com.example.spacex_kotlin.repository.model.room.rocket.Rocket
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
@@ -36,7 +36,7 @@ class RocketsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        rocketsViewModel.rockets!!.observe(this, Observer {
+        rocketsViewModel.data!!.observe(this, Observer {
             rocketsList = it as MutableList<Rocket>
             updateRecycler(rocketsList)
         })

@@ -35,14 +35,14 @@ class RocketDetailFragment : Fragment() {
             Toast.makeText(context, it.rocketName, Toast.LENGTH_SHORT).show()
             rocket_name.text = it.rocketName
             rocket_type.text = it.rocketType
-            rocket_first_stage.text = it.firstStage.toString()
-            rocket_second_stage.text = it.secondStage.toString()
-            rocket_mass.text = it.mass.kg.toString()
-            rocket_diameter.text = it.diameter.meters.toString()
-            rocket_height.text = it.height.toString()
-            rocket_start_cost.text = it.costPerLaunch.toString()
-            rocket_first_flight.text = it.firstFlight
-            rocket_desc.text = it.description
+            rocket_first_stage.text = "First stage"
+            rocket_second_stage.text = "Second Stage"
+            rocket_mass.text = it.rocketMass
+            rocket_diameter.text = it.rocketDiameter
+            rocket_height.text = it.rocketHeight
+            rocket_start_cost.text = it.rocketCostPerLaunch
+            rocket_first_flight.text = it.rocketFirstFlight
+            rocket_desc.text = it.rocketDescription
 
         })
 

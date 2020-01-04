@@ -1,4 +1,4 @@
-package com.example.spacex_kotlin.repository.model.room
+package com.example.spacex_kotlin.repository.model.room.rocket
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
