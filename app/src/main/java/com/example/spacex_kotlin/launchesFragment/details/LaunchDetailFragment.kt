@@ -5,17 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.spacex_kotlin.R
+import kotlinx.android.synthetic.main.launch_detail_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class LaunchDetailFragment : Fragment() {
 
-    companion object {
-        fun newInstance() =
-            LaunchDetailFragment()
-    }
-
-    private lateinit var detailViewModel: LaunchDetailViewModel
+    private lateinit var id: String
+    private val viewModel: LaunchDetailViewModel by viewModel { parametersOf(id) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +26,15 @@ class LaunchDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        detailViewModel = ViewModelProviders.of(this).get(LaunchDetailViewModel::class.java)
-        // TODO: Use the ViewModel
+        id = arguments!!.getString("launch_id").orEmpty()
+
+        viewModel.data.observe(this, Observer {
+            launch_date.text = it.launchStartDate
+            launch_desc.text = it.launchDescription
+            launch_number.text = it.launchId
+            launch_rocket.text = it.launchRocketName
+            launch_title.text = it.launchName
+        })
     }
 
 }

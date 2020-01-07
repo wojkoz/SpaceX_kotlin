@@ -7,27 +7,27 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class PayloadX(
     @Json(name = "customers")
-    val customers: List<String>,
+    val customers: List<String>?,
     @Json(name = "manufacturer")
-    val manufacturer: String,
+    val manufacturer: String?,
     @Json(name = "nationality")
-    val nationality: String,
+    val nationality: String?,
     @Json(name = "norad_id")
-    val noradId: List<Any>,
+    val noradId: List<Any>?,
     @Json(name = "orbit")
-    val orbit: String,
+    val orbit: String?,
     @Json(name = "orbit_params")
-    val orbitParams: OrbitParamsX,
+    val orbitParams: OrbitParamsX?,
     @Json(name = "payload_id")
-    val payloadId: String,
+    val payloadId: String?,
     @Json(name = "payload_mass_kg")
-    val payloadMassKg: Int,
+    val payloadMassKg: Int?,
     @Json(name = "payload_mass_lbs")
-    val payloadMassLbs: Int,
+    val payloadMassLbs: Int?,
     @Json(name = "payload_type")
-    val payloadType: String,
+    val payloadType: String?,
     @Json(name = "reused")
-    val reused: Boolean,
+    val reused: Boolean?,
     @Json(name = "uid")
-    val uid: String
+    val uid: String?
 )

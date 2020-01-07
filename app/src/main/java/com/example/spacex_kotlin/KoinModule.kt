@@ -2,6 +2,10 @@ package com.example.spacex_kotlin
 
 import com.example.spacex_kotlin.historicalEventsFragment.HistoricalEventsViewModel
 import com.example.spacex_kotlin.historicalEventsFragment.details.EventDetailViewModel
+import com.example.spacex_kotlin.launchesFragment.LaunchesViewModel
+import com.example.spacex_kotlin.launchesFragment.details.LaunchDetailViewModel
+import com.example.spacex_kotlin.missionsFragment.MissionsViewModel
+import com.example.spacex_kotlin.missionsFragment.details.MissionDetailViewModel
 import com.example.spacex_kotlin.repository.SpacexRepository
 import com.example.spacex_kotlin.repository.model.retrofit.SpacexApi
 import com.example.spacex_kotlin.repository.SpacexRepositoryImpl
@@ -25,13 +29,22 @@ val viewModelModule = module{
         HistoricalEventsViewModel(get())
     }
     viewModel {
-        RoadsterDetailViewModel(get())
+        MissionsViewModel(get())
     }
+    viewModel {
+        LaunchesViewModel(get())
+    }
+
 
     //detail viewModels
     viewModel { (id: String) -> RocketDetailViewModel(id, get()) }
 
     viewModel { (id: String) -> EventDetailViewModel(id, get()) }
+    viewModel {
+        RoadsterDetailViewModel(get())
+    }
+    viewModel { (id: String) -> MissionDetailViewModel(id, get()) }
+    viewModel { (id: String) -> LaunchDetailViewModel(id, get()) }
 }
 
 val repositoryModule = module {

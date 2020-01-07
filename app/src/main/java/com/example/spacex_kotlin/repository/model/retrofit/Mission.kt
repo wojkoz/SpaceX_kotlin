@@ -17,9 +17,9 @@ data class Mission(
     @Json(name = "payload_ids")
     val payloadIds: List<String>,
     @Json(name = "twitter")
-    val twitter: String,
+    val twitter: String?,
     @Json(name = "website")
-    val website: String,
+    val website: String?,
     @Json(name = "wikipedia")
-    val wikipedia: String
+    val wikipedia: String?
 )

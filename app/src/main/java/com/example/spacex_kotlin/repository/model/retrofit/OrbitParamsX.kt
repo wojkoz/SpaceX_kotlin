@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class OrbitParamsX(
     @Json(name = "apoapsis_km")
-    val apoapsisKm: Int,
+    val apoapsisKm: Double?,
     @Json(name = "arg_of_pericenter")
     val argOfPericenter: Any?,
     @Json(name = "eccentricity")
@@ -15,7 +15,7 @@ data class OrbitParamsX(
     @Json(name = "epoch")
     val epoch: Any?,
     @Json(name = "inclination_deg")
-    val inclinationDeg: Int,
+    val inclinationDeg: Double?,
     @Json(name = "lifespan_years")
     val lifespanYears: Any?,
     @Json(name = "longitude")
@@ -25,15 +25,15 @@ data class OrbitParamsX(
     @Json(name = "mean_motion")
     val meanMotion: Any?,
     @Json(name = "periapsis_km")
-    val periapsisKm: Int,
+    val periapsisKm: Double?,
     @Json(name = "period_min")
     val periodMin: Any?,
     @Json(name = "raan")
     val raan: Any?,
     @Json(name = "reference_system")
-    val referenceSystem: String,
+    val referenceSystem: String?,
     @Json(name = "regime")
-    val regime: String,
+    val regime: String?,
     @Json(name = "semi_major_axis_km")
     val semiMajorAxisKm: Any?
 )

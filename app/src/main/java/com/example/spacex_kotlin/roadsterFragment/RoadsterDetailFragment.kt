@@ -25,7 +25,7 @@ class RoadsterDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.data.observe(this, Observer {
+        viewModel.data!!.observe(this, Observer {
             roadster_days_in_space.text = it.daysInSpace.toString()
             roadster_desc.text = it.details
             roadster_distance_from_earth.text = it.distanceFromEarth.toString()
