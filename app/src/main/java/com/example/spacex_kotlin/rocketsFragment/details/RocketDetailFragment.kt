@@ -32,7 +32,6 @@ class RocketDetailFragment : Fragment() {
 
         //TODO: poprawic wyswietlanie
         viewModel.data.observe(this, Observer {
-            Toast.makeText(context, it.rocketName, Toast.LENGTH_SHORT).show()
             rocket_name.text = it.rocketName
             rocket_type.text = it.rocketType
             rocket_first_stage.text = "First stage"

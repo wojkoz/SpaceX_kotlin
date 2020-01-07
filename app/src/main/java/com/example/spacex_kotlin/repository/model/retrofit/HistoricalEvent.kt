@@ -13,7 +13,7 @@ data class HistoricalEvent(
     @Json(name = "event_date_utc")
     val eventDateUtc: String,
     @Json(name = "flight_number")
-    val flightNumber: Int,
+    val flightNumber: Int?,
     @Json(name = "id")
     val id: Int,
     @Json(name = "links")

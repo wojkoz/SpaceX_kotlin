@@ -1,9 +1,13 @@
 package com.example.spacex_kotlin
 
+import com.example.spacex_kotlin.historicalEventsFragment.HistoricalEventsViewModel
+import com.example.spacex_kotlin.historicalEventsFragment.details.EventDetailViewModel
 import com.example.spacex_kotlin.repository.SpacexRepository
 import com.example.spacex_kotlin.repository.model.retrofit.SpacexApi
 import com.example.spacex_kotlin.repository.SpacexRepositoryImpl
+import com.example.spacex_kotlin.repository.model.retrofit.Roadster
 import com.example.spacex_kotlin.repository.model.room.SpacexDatabase
+import com.example.spacex_kotlin.roadsterFragment.RoadsterDetailViewModel
 import com.example.spacex_kotlin.rocketsFragment.RocketsViewModel
 import com.example.spacex_kotlin.rocketsFragment.details.RocketDetailViewModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -13,10 +17,21 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 val viewModelModule = module{
+    //main viewModels
     viewModel{
         RocketsViewModel(get())
     }
+    viewModel {
+        HistoricalEventsViewModel(get())
+    }
+    viewModel {
+        RoadsterDetailViewModel(get())
+    }
+
+    //detail viewModels
     viewModel { (id: String) -> RocketDetailViewModel(id, get()) }
+
+    viewModel { (id: String) -> EventDetailViewModel(id, get()) }
 }
 
 val repositoryModule = module {

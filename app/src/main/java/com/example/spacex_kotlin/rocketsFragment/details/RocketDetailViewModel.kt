@@ -21,34 +21,4 @@ class RocketDetailViewModel(private val id: String, private val repo: SpacexRepo
     val data: LiveData<RocketDetail> = repo.getRocketDetailFromDatabase(id)
 
 
-    private val completableJob = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + completableJob)
-
-    init {
-        //fetchData()
-    }
-
-//    private fun fetchData(){
-//        _loadingState.postValue(LoadingState.LOADING)
-//
-//        coroutineScope.launch {
-//            try {
-//                val webResponse = repo.getRocketDetailFromDatabase(id)
-//                withContext(Dispatchers.Main){
-//                    _data.value = webResponse
-//                }
-//
-//            }catch (e: Throwable){
-//                Log.e("RocketDetailViewModel","coroutines API Request", e)
-//                _loadingState.postValue(LoadingState.error(e.message))
-//            }
-//
-//        }
-//        _loadingState.postValue(LoadingState.LOADED)
-//    }
-
-    override fun onCleared() {
-        super.onCleared()
-        completableJob.cancel()
-    }
 }

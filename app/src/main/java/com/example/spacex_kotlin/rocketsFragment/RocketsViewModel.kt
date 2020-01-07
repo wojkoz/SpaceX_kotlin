@@ -14,17 +14,8 @@ class RocketsViewModel(private val repo: SpacexRepository) : ViewModel() {
     val loadingState: LiveData<LoadingState>
         get() = _loadingState
 
-    private var _data = MutableLiveData<List<Rocket>>()
     val data: LiveData<List<Rocket>>
         get() = repo.getRocketsFromDatabase()!!
 
-    private val completableJob = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + completableJob)
 
-
-
-    override fun onCleared() {
-        super.onCleared()
-        completableJob.cancel()
-    }
 }

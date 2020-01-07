@@ -11,5 +11,5 @@ data class LinksXX(
     @Json(name = "reddit")
     val reddit: Any?,
     @Json(name = "wikipedia")
-    val wikipedia: String
+    val wikipedia: String?
 )

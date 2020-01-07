@@ -23,7 +23,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class RocketsFragment : Fragment() {
 
     private val rocketsViewModel: RocketsViewModel by viewModel()
-    lateinit var rocketsList: MutableList<Rocket>
     private val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
     override fun onCreateView(
@@ -37,8 +36,7 @@ class RocketsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         rocketsViewModel.data!!.observe(this, Observer {
-            rocketsList = it as MutableList<Rocket>
-            updateRecycler(rocketsList)
+            updateRecycler(it)
         })
 
         rocketsViewModel.loadingState.observe(this, Observer {
@@ -62,12 +60,11 @@ class RocketsFragment : Fragment() {
         }
 
         val section = Section()
-        //section.addAll() //fetch from ROOM
         groupAdapter.add(section)
 
     }
 
-    private fun updateRecycler(items: MutableList<Rocket>){
+    private fun updateRecycler(items: List<Rocket>){
         val recList = items.map { item -> ItemGroupie(item.rocketName!!, item.description!!, item.rocketId) }
         groupAdapter.clear()
         groupAdapter.add(Section(recList))

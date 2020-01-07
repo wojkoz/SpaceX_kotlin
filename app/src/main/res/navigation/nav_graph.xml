@@ -8,17 +8,32 @@
         android:id="@+id/historicalEventsFragment"
         android:name="com.example.spacex_kotlin.historicalEventsFragment.HistoricalEventsFragment"
         android:label="historical_events_fragment"
-        tools:layout="@layout/historical_events_fragment" />
+        tools:layout="@layout/historical_events_fragment" >
+        <action
+            android:id="@+id/action_historicalEventsFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment"
+            app:popUpTo="@+id/historicalEventsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/launchesFragment"
         android:name="com.example.spacex_kotlin.launchesFragment.LaunchesFragment"
         android:label="launches_fragment"
-        tools:layout="@layout/launches_fragment" />
+        tools:layout="@layout/launches_fragment" >
+        <action
+            android:id="@+id/action_launchesFragment_to_launchDetailFragment"
+            app:destination="@id/launchDetailFragment"
+            app:popUpTo="@+id/launchesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/missionsFragment"
         android:name="com.example.spacex_kotlin.missionsFragment.MissionsFragment"
         android:label="missions_fragment"
-        tools:layout="@layout/missions_fragment" />
+        tools:layout="@layout/missions_fragment" >
+        <action
+            android:id="@+id/action_missionsFragment_to_missionDetailFragment"
+            app:destination="@id/missionDetailFragment"
+            app:popUpTo="@+id/missionsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/roadsterDetailFragment"
         android:name="com.example.spacex_kotlin.roadsterFragment.RoadsterDetailFragment"
@@ -31,7 +46,8 @@
         tools:layout="@layout/rockets_fragment" >
         <action
             android:id="@+id/action_rocketsFragment_to_rocketDetailFragment2"
-            app:destination="@id/rocketDetailFragment" />
+            app:destination="@id/rocketDetailFragment"
+            app:popUpTo="@+id/rocketsFragment" />
     </fragment>
     <fragment
         android:id="@+id/rocketDetailFragment"
@@ -41,5 +57,30 @@
         <argument
             android:name="rocket_id"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventDetailFragment"
+        android:name="com.example.spacex_kotlin.historicalEventsFragment.details.EventDetailFragment"
+        android:label="event_detail_fragment"
+        tools:layout="@layout/event_detail_fragment" >
+        <argument
+            android:name="event_id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/launchDetailFragment"
+        android:name="com.example.spacex_kotlin.launchesFragment.details.LaunchDetailFragment"
+        android:label="launch_detail_fragment"
+        tools:layout="@layout/launch_detail_fragment" >
+        <argument
+            android:name="launch_id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/missionDetailFragment"
+        android:name="com.example.spacex_kotlin.missionsFragment.details.MissionDetailFragment"
+        android:label="mission_detail_fragment"
+        tools:layout="@layout/mission_detail_fragment" >
+        <argument android:name="mission_id" />
     </fragment>
 </navigation>
