@@ -1,22 +1,22 @@
 package com.example.spacex_kotlin.rocketsFragment.details
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.example.spacex_kotlin.R
+import kotlinx.android.synthetic.main.rocket_detail_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class RocketDetailFragment : Fragment() {
 
-    companion object {
-        fun newInstance() =
-            RocketDetailFragment()
-    }
+    private lateinit var id: String
+    private val viewModel: RocketDetailViewModel by viewModel{ parametersOf(id)}
 
-    private lateinit var viewModel: RocketDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +27,26 @@ class RocketDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(RocketDetailViewModel::class.java)
-        // TODO: Use the ViewModel
+        id = arguments!!.getString("rocket_id").orEmpty()
+
+
+        //TODO: poprawic wyswietlanie
+        viewModel.data.observe(this, Observer {
+            rocket_name.text = it.rocketName
+            rocket_type.text = it.rocketType
+            rocket_first_stage.text = "First stage"
+            rocket_second_stage.text = "Second Stage"
+            rocket_mass.text = it.rocketMass
+            rocket_diameter.text = it.rocketDiameter
+            rocket_height.text = it.rocketHeight
+            rocket_start_cost.text = it.rocketCostPerLaunch
+            rocket_first_flight.text = it.rocketFirstFlight
+            rocket_desc.text = it.rocketDescription
+
+        })
+
+
+
     }
 
 }

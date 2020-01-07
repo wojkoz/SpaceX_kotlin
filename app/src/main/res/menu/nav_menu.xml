@@ -15,7 +15,7 @@
             android:id="@+id/rocketsFragment"
             android:title="@string/rockets"/>
         <item
-            android:id="@+id/roadsterFragment"
+            android:id="@+id/roadsterDetailFragment"
             android:title="@string/roadster"/>
     </group>
 

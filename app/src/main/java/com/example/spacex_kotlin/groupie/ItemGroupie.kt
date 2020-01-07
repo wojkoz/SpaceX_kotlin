@@ -6,10 +6,11 @@ import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.item_groupie.*
 
 
-class ItemGroupie(private val header: String, private val content: String) : Item(){
+class ItemGroupie(private val header: String, private val content: String, val item_id: String) : Item(){
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.header.text = header
         viewHolder.content.text = content
+        viewHolder.item_id.text = item_id
     }
 
     override fun getLayout() = R.layout.item_groupie

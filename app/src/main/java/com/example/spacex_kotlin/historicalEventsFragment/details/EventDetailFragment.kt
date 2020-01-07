@@ -1,22 +1,24 @@
 package com.example.spacex_kotlin.historicalEventsFragment.details
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.spacex_kotlin.R
+import kotlinx.android.synthetic.main.event_detail_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class EventDetailFragment : Fragment() {
 
-    companion object {
-        fun newInstance() =
-            EventDetailFragment()
-    }
+    private lateinit var id: String
+    private val viewModel: EventDetailViewModel by viewModel{ parametersOf(id) }
 
-    private lateinit var detailViewModel: EventDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +29,16 @@ class EventDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        detailViewModel = ViewModelProviders.of(this).get(EventDetailViewModel::class.java)
-        // TODO: Use the ViewModel
+        id = arguments!!.getString("event_id").orEmpty()
+
+
+        viewModel.data.observe(this, Observer {
+            event_title.text = it.eventTitle
+            event_desc.text = it.eventDescription
+            event_date. text = it.eventDate
+            event_spacex_article.text = it.eventSpacexLink
+            event_wikipedia.text = it.eventWikipediaLink
+        })
     }
 
 }

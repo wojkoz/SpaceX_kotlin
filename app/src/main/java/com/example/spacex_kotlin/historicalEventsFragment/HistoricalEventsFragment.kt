@@ -1,28 +1,31 @@
 package com.example.spacex_kotlin.historicalEventsFragment
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.groupie.ItemGroupie
+import com.example.spacex_kotlin.repository.model.room.events.HistoricalEvent
+import com.example.spacex_kotlin.rocketsFragment.RocketsFragmentDirections
+import com.example.spacex_kotlin.rocketsFragment.RocketsViewModel
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import kotlinx.android.synthetic.main.historical_events_fragment.*
+import kotlinx.android.synthetic.main.item_groupie.view.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class HistoricalEventsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = HistoricalEventsFragment()
-    }
-
-    private lateinit var viewModel: HistoricalEventsViewModel
+    private val groupAdapter = GroupAdapter<GroupieViewHolder>()
+    private  val viewModel: HistoricalEventsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,28 +37,32 @@ class HistoricalEventsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HistoricalEventsViewModel::class.java)
 
-        val listaTyches: MutableList<ItemGroupie> = mutableListOf(
-            ItemGroupie("1", "asdd"),
-            ItemGroupie("2", "asdd")
-            ,
-            ItemGroupie("3", "asdd"),
-            ItemGroupie("4", "asdd"),
-            ItemGroupie("5", "asdd"),
-            ItemGroupie("6", "asdd")
-        )
-        val groupAdapter = GroupAdapter<GroupieViewHolder>()
+
+        viewModel.data.observe(this, Observer {
+            updateRecycler(it)
+        })
 
 
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL ,false)
             adapter = groupAdapter
         }
-        val section = Section(listaTyches)
-        groupAdapter.add(section)
 
-        // TODO: Use the ViewModel
+
+        val section = Section()
+        groupAdapter.add(section)
+    }
+
+    private fun updateRecycler(items: List<HistoricalEvent>){
+        val recList = items.map { item -> ItemGroupie(item.eventTitle!!, item.eventDescription!!, item.eventId) }
+        groupAdapter.clear()
+        groupAdapter.add(Section(recList))
+
+        groupAdapter.setOnItemClickListener { _, view ->
+            val action = HistoricalEventsFragmentDirections.actionHistoricalEventsFragmentToEventDetailFragment(view.item_id.text.toString())
+            view.findNavController().navigate(action)
+        }
     }
 
 }
