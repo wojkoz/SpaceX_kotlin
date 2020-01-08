@@ -10,8 +10,7 @@ import com.example.spacex_kotlin.repository.model.room.mission.Mission
 import com.example.spacex_kotlin.repository.model.room.roadster.Roadster
 import com.example.spacex_kotlin.repository.model.room.rocket.Rocket
 import com.example.spacex_kotlin.repository.model.room.rocket.RocketDetail
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 
 class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexDatabase): SpacexRepository {
@@ -19,6 +18,8 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
     suspend fun getAllEventsAsync() = api.getHistoricalEvents()
     suspend fun getAllMissionsAsync() = api.getMissionsAsync()
     suspend fun getAllLaunchesAsync() = api.getLaunchesAsync()
+
+
 
     //use only when app starts for first time or once a week
     private suspend fun populateDatabaseWithRockets(){
@@ -84,10 +85,6 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
     }
 
     override fun getRocketsFromDatabase(): LiveData<List<Rocket>>?{
-        GlobalScope.launch {
-            populateDatabaseWithRockets()
-        }
-
         return room.rocketDao().getRockets()
     }
 
@@ -96,9 +93,6 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
     }
 
     override fun getEventsFromDatabase(): LiveData<List<HistoricalEvent>> {
-        GlobalScope.launch {
-            populateDatabaseWithEvents()
-        }
         return room.eventDao().getEvents()
     }
 
@@ -107,16 +101,10 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
     }
 
     override fun getRoadster(): LiveData<Roadster> {
-        GlobalScope.launch {
-            populateDatabaseWithRoadster()
-        }
         return room.roadsterDao().getRoadster()
     }
 
     override fun getMissionsFromDatabase(): LiveData<List<Mission>> {
-        GlobalScope.launch {
-            populateDatabaseWithMissions()
-        }
         return room.missionDao().getAllMissions()
 
     }
@@ -126,14 +114,19 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
     }
 
     override fun getLaunchesFromDatabase(): LiveData<List<Launch>> {
-        GlobalScope.launch {
-            populateDatabaseWithLaunches()
-        }
         return room.launchDao().getLaunches()
     }
 
     override fun getLaunchDetailFromDatabase(id: String): LiveData<Launch> {
         return room.launchDao().getLaunchDetail(id)
+    }
+
+    override suspend fun populateDatabaseWithRetrofit() = withContext(Dispatchers.IO){
+        populateDatabaseWithEvents()
+        populateDatabaseWithLaunches()
+        populateDatabaseWithMissions()
+        populateDatabaseWithRoadster()
+        populateDatabaseWithRockets()
     }
 
 
