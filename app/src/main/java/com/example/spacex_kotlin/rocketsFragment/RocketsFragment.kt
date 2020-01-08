@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.spacex_kotlin.LoadingState
+import com.example.spacex_kotlin.utils.LoadingState
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.groupie.ItemGroupie
 import com.example.spacex_kotlin.repository.model.room.rocket.Rocket
@@ -35,22 +35,8 @@ class RocketsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        rocketsViewModel.data!!.observe(this, Observer {
+        rocketsViewModel.data.observe(this, Observer {
             updateRecycler(it)
-        })
-
-        rocketsViewModel.loadingState.observe(this, Observer {
-            when (it) {
-                LoadingState.LOADING -> {
-                    Toast.makeText(context,"Loading data", Toast.LENGTH_SHORT).show()
-                }
-                LoadingState.LOADED -> {
-
-                }
-                else -> {
-                    Toast.makeText(context, it.msg, Toast.LENGTH_LONG).show()
-                }
-            }
         })
 
 

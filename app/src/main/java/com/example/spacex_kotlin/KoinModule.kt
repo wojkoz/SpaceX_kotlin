@@ -26,7 +26,7 @@ val viewModelModule = module{
         RocketsViewModel(get())
     }
     viewModel {
-        HistoricalEventsViewModel(get())
+        HistoricalEventsViewModel(get(),get())
     }
     viewModel {
         MissionsViewModel(get())

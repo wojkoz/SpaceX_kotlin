@@ -23,4 +23,6 @@ interface SpacexRepository {
     fun getLaunchesFromDatabase(): LiveData<List<Launch>>
     fun getLaunchDetailFromDatabase(id: String): LiveData<Launch>
 
+    suspend fun populateDatabaseWithRetrofit()
+
 }
