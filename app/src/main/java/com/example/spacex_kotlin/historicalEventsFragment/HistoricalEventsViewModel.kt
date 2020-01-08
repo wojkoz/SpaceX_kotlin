@@ -1,7 +1,7 @@
 package com.example.spacex_kotlin.historicalEventsFragment
 
 import android.content.Context
-import android.widget.Toast
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,7 +25,8 @@ class HistoricalEventsViewModel(context: Context, private val repo: SpacexReposi
         get() = repo.getEventsFromDatabase()
 
     init {
-        if(context.isConnectedToNetwork()){
+        val sharedPrefValue = retriveSharedPreferencesFirstStartApp(context)
+        if(context.isConnectedToNetwork() && sharedPrefValue){
             _loadingState.postValue(LoadingState.LOADING)
             GlobalScope.launch{
                 withContext(Dispatchers.IO){
@@ -34,9 +35,18 @@ class HistoricalEventsViewModel(context: Context, private val repo: SpacexReposi
             }
             _loadingState.postValue(LoadingState.LOADED)
 
+            saveSharedPreferencesFirstStartApp(context)
+
         }
         else{
-            _loadingState.postValue(LoadingState.error("No network access!"))
+            if(!sharedPrefValue){
+                Log.d("AppFirstStart", "FALSE")
+            }
+
+            else{
+                _loadingState.postValue(LoadingState.error("No network access!"))
+            }
+
         }
     }
 

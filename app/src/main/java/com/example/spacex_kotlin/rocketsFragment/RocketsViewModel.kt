@@ -9,9 +9,6 @@ import com.example.spacex_kotlin.repository.model.room.rocket.Rocket
 
 class RocketsViewModel(private val repo: SpacexRepository) : ViewModel() {
 
-    private val _loadingState = MutableLiveData<LoadingState>()
-    val loadingState: LiveData<LoadingState>
-        get() = _loadingState
 
     val data: LiveData<List<Rocket>>
         get() = repo.getRocketsFromDatabase()!!

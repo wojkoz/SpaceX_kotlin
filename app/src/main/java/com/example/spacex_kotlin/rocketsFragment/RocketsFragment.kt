@@ -35,22 +35,8 @@ class RocketsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        rocketsViewModel.data!!.observe(this, Observer {
+        rocketsViewModel.data.observe(this, Observer {
             updateRecycler(it)
-        })
-
-        rocketsViewModel.loadingState.observe(this, Observer {
-            when (it) {
-                LoadingState.LOADING -> {
-                    Toast.makeText(context,"Loading data", Toast.LENGTH_SHORT).show()
-                }
-                LoadingState.LOADED -> {
-
-                }
-                else -> {
-                    Toast.makeText(context, it.msg, Toast.LENGTH_LONG).show()
-                }
-            }
         })
 
 
