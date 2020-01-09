@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorItemBackground"
+    android:background="@drawable/spacebackground"
     android:orientation="vertical">
 
     <TextView
@@ -21,12 +21,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColor="@android:color/white"
-        android:textSize="22sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header"
         tools:text="1" />
@@ -38,9 +39,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="10dp"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColor="@android:color/white"
         android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
