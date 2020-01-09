@@ -55,7 +55,7 @@ class HistoricalEventsFragment : Fragment() {
     }
 
     private fun updateRecycler(items: List<HistoricalEvent>){
-        val recList = items.map { item -> ItemGroupie(item.eventTitle!!, item.eventDescription!!, item.eventId) }
+        val recList = items.map { item -> ItemGroupie(item.eventTitle, item.eventDescription, item.eventId) }
         groupAdapter.clear()
         groupAdapter.add(Section(recList))
 
