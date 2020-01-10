@@ -1,6 +1,7 @@
 package com.example.spacex_kotlin.missionsFragment.details
 
 import android.os.Bundle
+import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,9 @@ class MissionDetailFragment : Fragment() {
             mission_www.text = it.missionWebsite
             mission_wikipedia.text = it.missionWebsite
             mission_producents.text = it.missionProducent
+
+            Linkify.addLinks(mission_wikipedia, Linkify.ALL)
+            Linkify.addLinks(mission_www, Linkify.ALL)
         })
 
     }

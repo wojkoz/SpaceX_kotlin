@@ -1,11 +1,9 @@
 package com.example.spacex_kotlin.utils
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
-import android.net.Uri
-import android.os.Bundle
+
 
 
 fun Context.isConnectedToNetwork(): Boolean {
@@ -15,7 +13,7 @@ fun Context.isConnectedToNetwork(): Boolean {
     return connectivityManager?.activeNetworkInfo?.isConnectedOrConnecting ?: false
 }
 
-fun shortDesc(desc: String): String{
+fun makeShortDesc(desc: String): String{
     var shorterDesc = desc
     if(desc.length >= 100){
         shorterDesc = desc.substring(0, 99)
@@ -43,11 +41,4 @@ fun retriveSharedPreferencesFirstStartApp(context: Context): Boolean{
     return sharedPref.getBoolean(SHARED_PREF_KEY, true)
 }
 
-fun openNewTabWindow(urls: String, context: Context) {
-    val uris = Uri.parse(urls)
-    val intents = Intent(Intent.ACTION_VIEW, uris)
-    val b = Bundle()
-    b.putBoolean("new_window", true)
-    intents.putExtras(b)
-    context.startActivity(intents)
-}
+fun makeShortDate(date: String): String = date.substring(0,10)

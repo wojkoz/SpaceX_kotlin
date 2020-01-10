@@ -1,6 +1,7 @@
 package com.example.spacex_kotlin.historicalEventsFragment.details
 
 import android.os.Bundle
+import android.text.util.Linkify
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -31,13 +32,15 @@ class EventDetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         id = arguments!!.getString("event_id").orEmpty()
 
-
         viewModel.data.observe(this, Observer {
             event_title.text = it.eventTitle
             event_desc.text = it.eventDescription
             event_date. text = it.eventDate
             event_spacex_article.text = it.eventSpacexLink
             event_wikipedia.text = it.eventWikipediaLink
+
+            Linkify.addLinks(event_wikipedia, Linkify.ALL)
+            Linkify.addLinks(event_spacex_article, Linkify.ALL)
         })
     }
 

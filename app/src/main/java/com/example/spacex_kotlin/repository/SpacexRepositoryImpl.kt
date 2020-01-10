@@ -10,18 +10,20 @@ import com.example.spacex_kotlin.repository.model.room.mission.Mission
 import com.example.spacex_kotlin.repository.model.room.roadster.Roadster
 import com.example.spacex_kotlin.repository.model.room.rocket.Rocket
 import com.example.spacex_kotlin.repository.model.room.rocket.RocketDetail
+import com.example.spacex_kotlin.utils.makeShortDate
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexDatabase): SpacexRepository {
-    suspend fun getAllRocketsAsync() = api.getRocketsAsync()
-    suspend fun getAllEventsAsync() = api.getHistoricalEvents()
-    suspend fun getAllMissionsAsync() = api.getMissionsAsync()
-    suspend fun getAllLaunchesAsync() = api.getLaunchesAsync()
+    private suspend fun getAllRocketsAsync() = api.getRocketsAsync()
+    private suspend fun getAllEventsAsync() = api.getHistoricalEvents()
+    private suspend fun getAllMissionsAsync() = api.getMissionsAsync()
+    private suspend fun getAllLaunchesAsync() = api.getLaunchesAsync()
 
-    //use only when app starts for first time or once a week
-    private suspend fun populateDatabaseWithRockets(){
+    override suspend fun populateDatabaseWithRockets(){
 
         val rocketList = getAllRocketsAsync()
 
@@ -49,15 +51,15 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
         })
     }
 
-    private suspend fun populateDatabaseWithEvents(){
+    override suspend fun populateDatabaseWithEvents(){
         val eventList = getAllEventsAsync()
 
         room.eventDao().addEventFromList(eventList.map {
-            HistoricalEvent(it.id.toString(), it.title, it.details, it.links.article, it.links.wikipedia, it.eventDateUtc)
+            HistoricalEvent(it.id.toString(), it.title, it.details, it.links.article, it.links.wikipedia, makeShortDate(it.eventDateUtc))
         })
     }
 
-    private suspend fun populateDatabaseWithMissions(){
+    override suspend fun populateDatabaseWithMissions(){
         val missionList = getAllMissionsAsync()
 
         room.missionDao().addMissionFromList(missionList.map {
@@ -65,21 +67,21 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
         })
     }
 
-    private suspend fun populateDatabaseWithLaunches(){
+    override suspend fun populateDatabaseWithLaunches(){
         val launchList = getAllLaunchesAsync()
         val roomList = launchList.map {
             if(it.details == null)
-                Launch(it.flightNumber.toString(), it.missionName, it.launchDateLocal, it.rocket.rocketName, "No Description", it.links.videoLink)
+                Launch(it.flightNumber.toString(), it.missionName, makeShortDate(it.launchDateLocal), it.rocket.rocketName, "No Description", it.links.videoLink)
             else
-                Launch(it.flightNumber.toString(), it.missionName, it.launchDateLocal, it.rocket.rocketName, it.details, it.links.videoLink)
+                Launch(it.flightNumber.toString(), it.missionName, makeShortDate(it.launchDateLocal), it.rocket.rocketName, it.details, it.links.videoLink)
         }
         room.launchDao().addLaunchesFromList(roomList)
     }
 
-    private suspend fun populateDatabaseWithRoadster(){
+    override suspend fun populateDatabaseWithRoadster(){
         val roadster = api.getRoadsterAsync()
 
-        room.roadsterDao().addRoadster(Roadster(roadster.name, roadster.launchDateUtc, roadster.launchMassKg.toString(), roadster.periodDays,
+        room.roadsterDao().addRoadster(Roadster(roadster.name, makeShortDate(roadster.launchDateUtc), roadster.launchMassKg.toString(), roadster.periodDays,
             roadster.speedKph, roadster.earthDistanceKm, roadster.marsDistanceKm, roadster.details, roadster.wikipedia))
     }
 
@@ -134,6 +136,14 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
 
     override fun getLaunchDetailFromDatabase(id: String): LiveData<Launch> {
         return room.launchDao().getLaunchDetail(id)
+    }
+
+    override suspend fun populateDatabaseWithRetrofit() = withContext(Dispatchers.IO){
+        populateDatabaseWithEvents()
+        populateDatabaseWithLaunches()
+        populateDatabaseWithMissions()
+        populateDatabaseWithRoadster()
+        populateDatabaseWithRockets()
     }
 
 

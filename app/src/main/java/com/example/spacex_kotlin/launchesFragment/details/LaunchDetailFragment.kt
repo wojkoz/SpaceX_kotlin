@@ -1,6 +1,7 @@
 package com.example.spacex_kotlin.launchesFragment.details
 
 import android.os.Bundle
+import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +35,9 @@ class LaunchDetailFragment : Fragment() {
             launch_number.text = it.launchId
             launch_rocket.text = it.launchRocketName
             launch_title.text = it.launchName
+            launch_video_link.text = it.launchVideoLink
+
+            Linkify.addLinks(launch_video_link, Linkify.ALL)
         })
     }
 
