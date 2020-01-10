@@ -36,7 +36,7 @@ class MissionDetailFragment : Fragment() {
             mission_payload.text = it.missionPayload
             mission_title.text = it.missionTitle
             mission_www.text = it.missionWebsite
-            mission_wikipedia.text = it.missionWebsite
+            mission_wikipedia.text = it.missionWikipedia
             mission_producents.text = it.missionProducent
 
             Linkify.addLinks(mission_wikipedia, Linkify.ALL)
