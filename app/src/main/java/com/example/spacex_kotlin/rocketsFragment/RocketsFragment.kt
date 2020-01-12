@@ -48,7 +48,11 @@ class RocketsFragment : Fragment() {
 
         val section = Section()
         groupAdapter.add(section)
-
+        swipeToRefresh.setOnRefreshListener{
+            rocketsViewModel.onRefresh()
+            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
+            swipeToRefresh.isRefreshing = false
+        }
     }
 
     private fun updateRecycler(items: List<Rocket>){
