@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/spacebackground"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="40dp">
 
     <TextView
         android:id="@+id/item_id"
@@ -37,13 +38,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="10dp"
         android:textAlignment="viewStart"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="1" />

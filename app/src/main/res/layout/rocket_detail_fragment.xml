@@ -17,89 +17,167 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/spacebackground">
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Launch cost:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Rocket type:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Payload:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="First stage of flight:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Second stage of flight:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Rocket mass:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="First flight date:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
                 <TextView
                     android:id="@+id/rocket_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="139dp"
-                    android:layout_marginTop="39dp"
-                    android:layout_marginEnd="213dp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="24dp"
+                    android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rocket_first_flight"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10"
                     tools:text="@string/nav_app_bar_navigate_up_description" />
 
                 <TextView
                     android:id="@+id/rocket_first_flight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="129dp"
-                    android:layout_marginTop="510dp"
-                    android:layout_marginEnd="282dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/textView18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView21"
                     tools:text="First_flight" />
 
                 <TextView
                     android:id="@+id/rocket_start_cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="129dp"
-                    android:layout_marginTop="451dp"
-                    android:layout_marginEnd="282dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/textView20"
+                    app:layout_constraintTop_toBottomOf="@+id/rocket_height"
                     tools:text="Start_Cost" />
 
                 <TextView
                     android:id="@+id/rocket_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="147dp"
-                    android:layout_marginTop="385dp"
-                    android:layout_marginEnd="264dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/textView19"
+                    app:layout_constraintTop_toBottomOf="@+id/rocket_diameter"
                     tools:text="Height" />
 
                 <TextView
                     android:id="@+id/rocket_diameter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="139dp"
-                    android:layout_marginTop="339dp"
-                    android:layout_marginEnd="272dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/textView11"
+                    app:layout_constraintTop_toBottomOf="@+id/rocket_mass"
                     tools:text="Diameter" />
 
                 <TextView
                     android:id="@+id/rocket_mass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="171dp"
-                    android:layout_marginTop="300dp"
-                    android:layout_marginEnd="240dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/textView17"
+                    app:layout_constraintTop_toBottomOf="@+id/rocket_second_stage"
                     tools:text="Mass" />
 
                 <TextView
                     android:id="@+id/rocket_second_stage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="155dp"
-                    android:layout_marginTop="28dp"
-                    android:layout_marginEnd="197dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/textView16"
                     app:layout_constraintTop_toBottomOf="@+id/rocket_first_stage"
                     tools:text="Second_stage" />
 
@@ -107,11 +185,10 @@
                     android:id="@+id/rocket_first_stage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="143dp"
-                    android:layout_marginTop="39dp"
-                    android:layout_marginEnd="197dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/rocket_payload"
                     tools:text="First_stage" />
 
@@ -119,11 +196,10 @@
                     android:id="@+id/rocket_payload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="143dp"
-                    android:layout_marginTop="29dp"
-                    android:layout_marginEnd="209dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/textView14"
                     app:layout_constraintTop_toBottomOf="@+id/rocket_type"
                     tools:text="Payload" />
 
@@ -131,23 +207,78 @@
                     android:id="@+id/rocket_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="143dp"
-                    android:layout_marginTop="78dp"
-                    android:layout_marginEnd="193dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rocket_name"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/textView13"
+                    app:layout_constraintTop_toBottomOf="@+id/rocket_first_flight"
                     tools:text="RocketType" />
 
                 <TextView
                     android:id="@+id/rocket_name"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="152dp"
+                    android:layout_marginTop="16dp"
                     android:text=""
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="RocketName" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="152dp"
+                    android:layout_marginTop="28dp"
+                    android:text="HISTORY"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rocket_name" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Rocket diameter:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Rocket height:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="152dp"
+                    android:layout_marginTop="20dp"
+                    android:text="DETAILS"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rocket_desc" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
