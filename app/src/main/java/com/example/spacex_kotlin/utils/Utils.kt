@@ -22,8 +22,8 @@ fun makeShortDesc(desc: String): String{
      return shorterDesc
 }
 
-private val SHARED_PREF_KEY = "app_first_start"
-private val SHARED_PREF_FILE = "first_start"
+private const val SHARED_PREF_KEY = "app_first_start"
+private const val SHARED_PREF_FILE = "first_start"
 
 fun saveSharedPreferencesFirstStartApp(context: Context){
     val sharedPref: SharedPreferences = context.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
@@ -42,3 +42,5 @@ fun retriveSharedPreferencesFirstStartApp(context: Context): Boolean{
 }
 
 fun makeShortDate(date: String): String = date.substring(0,10)
+
+fun getVideoId(url: String): String = url.substringAfter('=')

@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.example.spacex_kotlin.R
+import com.example.spacex_kotlin.utils.getVideoId
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import kotlinx.android.synthetic.main.launch_detail_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+
 
 class LaunchDetailFragment : Fragment() {
 
@@ -22,6 +25,9 @@ class LaunchDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         return inflater.inflate(R.layout.launch_detail_fragment, container, false)
     }
 
@@ -38,7 +44,20 @@ class LaunchDetailFragment : Fragment() {
             launch_video_link.text = it.launchVideoLink
 
             Linkify.addLinks(launch_video_link, Linkify.ALL)
+
+            lifecycle.addObserver(youtube_player_view)
+            youtube_player_view.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    val videoId = getVideoId(it.launchVideoLink!!)
+                    youTubePlayer.loadVideo(videoId, 0f)
+                }
+            })
+
         })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        youtube_player_view.release()
+    }
 }

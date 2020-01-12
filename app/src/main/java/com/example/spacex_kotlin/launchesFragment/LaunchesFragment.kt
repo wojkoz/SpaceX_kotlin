@@ -47,6 +47,7 @@ class LaunchesFragment : Fragment() {
         }
         val section = Section()
         groupAdapter.add(section)
+
         swipeToRefresh.setOnRefreshListener{
 
             viewModel.onRefresh()
