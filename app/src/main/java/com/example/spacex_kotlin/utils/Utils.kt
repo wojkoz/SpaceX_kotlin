@@ -3,7 +3,17 @@ package com.example.spacex_kotlin.utils
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
+import com.example.spacex_kotlin.repository.model.retrofit.FirstStage
+import com.example.spacex_kotlin.repository.model.retrofit.SecondStage
 
+
+fun makeFirstStageReadable(stage: FirstStage): String{
+    return "\tBurn Time: ${stage.burnTimeSec}\n\tEngines: ${stage.engines}\n\tFuel amount (tons): ${stage.fuelAmountTons}\n\tReusable: ${stage.reusable}"
+}
+
+fun makeSecondStageReadable(stage: SecondStage): String{
+    return "\tBurn Time: ${stage.burnTimeSec}\n\tEngines: ${stage.engines}\n\tFuel amount (tons): ${stage.fuelAmountTons}"
+}
 
 fun Context.isConnectedToNetwork(): Boolean {
 
@@ -20,7 +30,7 @@ fun makeShortDesc(desc: String): String{
     }
      return shorterDesc
 }
-
+const val NO_INTERNET_CONNECTION = "No internet connection"
 private const val SHARED_PREF_KEY = "Aapp_first_start"
 private const val SHARED_PREF_FILE = "first_start"
 

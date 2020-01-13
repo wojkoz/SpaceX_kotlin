@@ -30,12 +30,11 @@ class RocketDetailFragment : Fragment() {
         id = arguments!!.getString("rocket_id").orEmpty()
 
 
-        //TODO: poprawic wyswietlanie, przy pobieraniu zmienic wyglad czy cos
         viewModel.data.observe(this, Observer {
             rocket_name.text = it.rocketName
             rocket_type.text = it.rocketType
-            rocket_first_stage.text = "First stage"
-            rocket_second_stage.text = "Second Stage"
+            rocket_first_stage.text = it.rocketFirstStage
+            rocket_second_stage.text = it.rocketSecondStage
             rocket_mass.text = it.rocketMass
             rocket_diameter.text = it.rocketDiameter
             rocket_height.text = it.rocketHeight

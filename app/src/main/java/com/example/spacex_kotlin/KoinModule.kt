@@ -24,16 +24,16 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 val viewModelModule = module{
     //main viewModels
     viewModel{
-        RocketsViewModel(get())
+        RocketsViewModel(get(), get())
     }
     viewModel {
         HistoricalEventsViewModel(get(), get())
     }
     viewModel {
-        MissionsViewModel(get())
+        MissionsViewModel(get(), get())
     }
     viewModel {
-        LaunchesViewModel(get())
+        LaunchesViewModel(get(), get())
     }
 
 

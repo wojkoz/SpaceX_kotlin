@@ -1,7 +1,6 @@
 package com.example.spacex_kotlin.historicalEventsFragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.spacex_kotlin.utils.LoadingState
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.groupie.ItemGroupie
 import com.example.spacex_kotlin.repository.model.room.events.HistoricalEvent
+import com.example.spacex_kotlin.utils.LoadingState
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder

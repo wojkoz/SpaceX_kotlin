@@ -5,12 +5,15 @@ import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.utils.getVideoId
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
 import kotlinx.android.synthetic.main.launch_detail_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -40,9 +43,7 @@ class LaunchDetailFragment : Fragment() {
             launch_number.text = it.launchId
             launch_rocket.text = it.launchRocketName
             launch_title.text = it.launchName
-            launch_video_link.text = it.launchVideoLink
 
-            Linkify.addLinks(launch_video_link, Linkify.ALL)
             video = getVideoId(it.launchVideoLink!!)
 
         })
@@ -54,5 +55,8 @@ class LaunchDetailFragment : Fragment() {
                 youTubePlayer.loadVideo(videoId, 0f)
             }
         })
+
+
     }
+    
 }

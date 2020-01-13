@@ -9,6 +9,8 @@ import com.example.spacex_kotlin.repository.model.room.mission.Mission
 import com.example.spacex_kotlin.repository.model.room.roadster.Roadster
 import com.example.spacex_kotlin.repository.model.room.rocket.Rocket
 import com.example.spacex_kotlin.repository.model.room.rocket.RocketDetail
+import com.example.spacex_kotlin.utils.makeFirstStageReadable
+import com.example.spacex_kotlin.utils.makeSecondStageReadable
 import com.example.spacex_kotlin.utils.makeShortDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -38,6 +40,8 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
                 it.rocketId,
                 it.rocketName,
                 it.rocketType,
+                makeFirstStageReadable(it.firstStage),
+                makeSecondStageReadable(it.secondStage),
                 it.mass.kg.toString(),
                 it.diameter.meters.toString(),
                 it.height.meters.toString(),
