@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.example.spacex_kotlin.R
 import kotlinx.android.synthetic.main.mission_detail_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel

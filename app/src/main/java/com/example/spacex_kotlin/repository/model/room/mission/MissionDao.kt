@@ -10,14 +10,14 @@ import androidx.room.Query
 interface MissionDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addMissionFromList(mission: List<Mission>)
+    suspend fun addMissionFromList(mission: List<Mission>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addMission(mission: Mission)
+    suspend fun addMission(mission: Mission)
 
     @Query("SELECT * FROM mission_table")
-    fun getAllMissions(): LiveData<List<Mission>>
+    suspend fun getAllMissions(): List<Mission>
 
     @Query("SELECT * FROM mission_table where mission_id like :id")
-    fun getMissionDetail(id: String): LiveData<Mission>
+    suspend fun getMissionDetail(id: String): Mission
 }

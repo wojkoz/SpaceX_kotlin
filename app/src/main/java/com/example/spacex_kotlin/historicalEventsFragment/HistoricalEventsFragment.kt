@@ -1,6 +1,7 @@
 package com.example.spacex_kotlin.historicalEventsFragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,7 +71,6 @@ class HistoricalEventsFragment : Fragment() {
 
             viewModel.onRefresh()
 
-            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
 
             swipeToRefresh.isRefreshing = false
         }

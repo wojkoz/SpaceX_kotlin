@@ -2,14 +2,11 @@ package com.example.spacex_kotlin.historicalEventsFragment.details
 
 import android.os.Bundle
 import android.text.util.Linkify
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.example.spacex_kotlin.R
 import kotlinx.android.synthetic.main.event_detail_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel

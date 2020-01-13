@@ -20,13 +20,12 @@ class LaunchDetailFragment : Fragment() {
 
     private lateinit var id: String
     private val viewModel: LaunchDetailViewModel by viewModel { parametersOf(id) }
+    private var video: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
 
         return inflater.inflate(R.layout.launch_detail_fragment, container, false)
     }
@@ -44,20 +43,16 @@ class LaunchDetailFragment : Fragment() {
             launch_video_link.text = it.launchVideoLink
 
             Linkify.addLinks(launch_video_link, Linkify.ALL)
-
-            lifecycle.addObserver(youtube_player_view)
-            youtube_player_view.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-                override fun onReady(youTubePlayer: YouTubePlayer) {
-                    val videoId = getVideoId(it.launchVideoLink!!)
-                    youTubePlayer.loadVideo(videoId, 0f)
-                }
-            })
+            video = getVideoId(it.launchVideoLink!!)
 
         })
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        youtube_player_view.release()
+        lifecycle.addObserver(youtube_player_view)
+        youtube_player_view.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                val videoId = video
+                youTubePlayer.loadVideo(videoId, 0f)
+            }
+        })
     }
 }

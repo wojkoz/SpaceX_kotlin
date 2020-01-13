@@ -1,5 +1,6 @@
 package com.example.spacex_kotlin
 
+import android.util.Log
 import com.example.spacex_kotlin.historicalEventsFragment.HistoricalEventsViewModel
 import com.example.spacex_kotlin.historicalEventsFragment.details.EventDetailViewModel
 import com.example.spacex_kotlin.launchesFragment.LaunchesViewModel
@@ -58,6 +59,7 @@ val retrofitModule = module {
 
 
     fun provideSpacexApi() : SpacexApi {
+
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.spacexdata.com/v3/")

@@ -10,8 +10,8 @@ import androidx.room.Query
 interface RoadsterDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addRoadster(roadster: Roadster)
+    suspend fun addRoadster(roadster: Roadster)
 
     @Query("SELECT * FROM roadster_table")
-    fun getRoadster(): LiveData<Roadster>
+    suspend fun getRoadster(): Roadster
 }

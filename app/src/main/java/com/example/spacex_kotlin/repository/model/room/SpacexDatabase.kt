@@ -38,7 +38,6 @@ abstract class SpacexDatabase : RoomDatabase(){
                             context.applicationContext,
                             SpacexDatabase::class.java, "spacex_database"
                         )
-                            .fallbackToDestructiveMigration()
                             .build()
                     }
                 }

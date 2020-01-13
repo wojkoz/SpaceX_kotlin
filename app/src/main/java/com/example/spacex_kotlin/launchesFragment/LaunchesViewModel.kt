@@ -1,24 +1,30 @@
 package com.example.spacex_kotlin.launchesFragment
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.spacex_kotlin.repository.SpacexRepository
 import com.example.spacex_kotlin.repository.model.room.launch.Launch
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class LaunchesViewModel(private val repo: SpacexRepository) : ViewModel() {
+    private val _data = MediatorLiveData<List<Launch>>()
     val data: LiveData<List<Launch>>
-        get() = repo.getLaunchesFromDatabase()
+        get() = _data
+
+    private fun getData() = viewModelScope.launch {
+        _data.postValue(repo.getLaunchesFromDatabase())
+    }
+    private fun getDataFromRetrofit() = viewModelScope.launch {
+        repo.populateDatabaseWithRetrofit()
+    }
+    init{
+        getData()
+    }
 
     fun onRefresh(){
-        GlobalScope.launch {
-            withContext(Dispatchers.IO){
-                repo.populateDatabaseWithLaunches()
-            }
-
-        }
+        getDataFromRetrofit()
+        getData()
     }
 }

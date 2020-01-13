@@ -1,24 +1,25 @@
 package com.example.spacex_kotlin.historicalEventsFragment.details
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.spacex_kotlin.repository.SpacexRepository
 import com.example.spacex_kotlin.repository.model.room.events.HistoricalEvent
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-class EventDetailViewModel( id: String, private val repo: SpacexRepository) : ViewModel() {
+class EventDetailViewModel( private val id: String, private val repo: SpacexRepository) : ViewModel() {
 
-    val data: LiveData<HistoricalEvent> = repo.getEventDetailFromDatabase(id)
+    private val _data = MediatorLiveData<HistoricalEvent>()
+    val data: LiveData<HistoricalEvent> = _data
 
-    fun onRefresh(){
-        GlobalScope.launch {
-            withContext(Dispatchers.IO){
-                repo.populateDatabaseWithEvents()
-            }
 
-        }
+    private fun getDetail() = viewModelScope.launch {
+            _data.postValue(repo.getEventDetailFromDatabase(id))
     }
+
+    init {
+        getDetail()
+    }
+
 }

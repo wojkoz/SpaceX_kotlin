@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import android.net.ConnectivityManager
 
 
-
 fun Context.isConnectedToNetwork(): Boolean {
 
     val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
@@ -22,7 +21,7 @@ fun makeShortDesc(desc: String): String{
      return shorterDesc
 }
 
-private const val SHARED_PREF_KEY = "app_first_start"
+private const val SHARED_PREF_KEY = "Aapp_first_start"
 private const val SHARED_PREF_FILE = "first_start"
 
 fun saveSharedPreferencesFirstStartApp(context: Context){
