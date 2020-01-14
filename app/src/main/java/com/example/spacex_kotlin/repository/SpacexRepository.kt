@@ -32,4 +32,6 @@ interface SpacexRepository {
     suspend fun populateDatabaseWithRoadster()
     suspend fun populateDatabaseWithRockets()
 
+    suspend fun populateDatabaseWithRetrofit()
+
 }

@@ -30,6 +30,7 @@ fun makeShortDesc(desc: String): String{
     }
      return shorterDesc
 }
+
 const val NO_INTERNET_CONNECTION = "No internet connection"
 private const val SHARED_PREF_KEY = "Aapp_first_start"
 private const val SHARED_PREF_FILE = "first_start"
@@ -48,7 +49,6 @@ fun retriveSharedPreferencesFirstStartApp(context: Context): Boolean{
     val sharedPref: SharedPreferences = context.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
 
     return sharedPref.getBoolean(SHARED_PREF_KEY, true)
-}
 
 fun makeShortDate(date: String): String = date.substring(0,10)
 

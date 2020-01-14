@@ -11,6 +11,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+
 class HistoricalEventsViewModel(private val context: Context ,private val repo: SpacexRepository) : ViewModel() {
 
     private val _loadingState = MutableLiveData<LoadingState>()
@@ -20,6 +21,7 @@ class HistoricalEventsViewModel(private val context: Context ,private val repo: 
     private val _data = MediatorLiveData<List<HistoricalEvent>>()
     val data: LiveData<List<HistoricalEvent>>
         get() = _data
+
 
     private fun getData() = viewModelScope.launch{
         _data.postValue(repo.getEventsFromDatabase())
@@ -35,6 +37,7 @@ class HistoricalEventsViewModel(private val context: Context ,private val repo: 
             _loadingState.postValue(LoadingState.LOADING)
 
             getDataFromRetrofit()
+          
             _loadingState.postValue(LoadingState.LOADED)
 
             saveSharedPreferencesFirstStartApp(context)
@@ -64,4 +67,5 @@ class HistoricalEventsViewModel(private val context: Context ,private val repo: 
             _loadingState.postValue(LoadingState.error(NO_INTERNET_CONNECTION))
         }
     }
+
 }
