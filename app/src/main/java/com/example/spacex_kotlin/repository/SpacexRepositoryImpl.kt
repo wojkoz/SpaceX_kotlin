@@ -133,13 +133,6 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
         populateDatabaseWithRockets()
     }
 
-    override suspend fun populateDatabaseWithRetrofit() = withContext(Dispatchers.IO){
-        populateDatabaseWithEvents()
-        populateDatabaseWithLaunches()
-        populateDatabaseWithMissions()
-        populateDatabaseWithRoadster()
-        populateDatabaseWithRockets()
-    }
 
 
 }

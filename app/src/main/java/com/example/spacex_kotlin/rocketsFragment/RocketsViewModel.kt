@@ -11,6 +11,10 @@ import kotlinx.coroutines.launch
 
 class RocketsViewModel(private val repo: SpacexRepository, private val context: Context) : ViewModel() {
 
+    private val _loadingState = MutableLiveData<LoadingState>()
+    val loadingState: LiveData<LoadingState>
+        get() = _loadingState
+
     private val _data = MediatorLiveData<List<Rocket>>()
     val data: LiveData<List<Rocket>>
         get() = _data

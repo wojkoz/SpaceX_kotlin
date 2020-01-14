@@ -10,15 +10,24 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import com.example.spacex_kotlin.repository.SpacexRepository
+import com.example.spacex_kotlin.repository.SpacexRepositoryImpl
+import com.example.spacex_kotlin.repository.model.retrofit.SpacexApi
+import com.example.spacex_kotlin.utils.isConnectedToNetwork
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 
-class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener{
+class MainActivity: AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener{
 
     lateinit var toolbar: Toolbar
     lateinit var drawerLayout: DrawerLayout
     lateinit var navView: NavigationView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -45,7 +54,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         }
 
         navView.setNavigationItemSelectedListener(this)
-
 
     }
 

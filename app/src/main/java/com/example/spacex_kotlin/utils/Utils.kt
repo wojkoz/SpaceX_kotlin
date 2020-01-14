@@ -45,10 +45,12 @@ fun saveSharedPreferencesFirstStartApp(context: Context){
     editor.apply()
 }
 
-fun retriveSharedPreferencesFirstStartApp(context: Context): Boolean{
-    val sharedPref: SharedPreferences = context.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+fun retriveSharedPreferencesFirstStartApp(context: Context): Boolean {
+    val sharedPref: SharedPreferences =
+        context.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
 
     return sharedPref.getBoolean(SHARED_PREF_KEY, true)
+}
 
 fun makeShortDate(date: String): String = date.substring(0,10)
 

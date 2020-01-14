@@ -6,10 +6,7 @@ import androidx.lifecycle.*
 import com.example.spacex_kotlin.repository.SpacexRepository
 import com.example.spacex_kotlin.repository.model.room.events.HistoricalEvent
 import com.example.spacex_kotlin.utils.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class HistoricalEventsViewModel(private val context: Context ,private val repo: SpacexRepository) : ViewModel() {
@@ -29,6 +26,7 @@ class HistoricalEventsViewModel(private val context: Context ,private val repo: 
 
     private fun getDataFromRetrofit() = viewModelScope.launch {
         repo.populateDatabaseWithRetrofit()
+        getData()
     }
 
     init {
@@ -37,15 +35,16 @@ class HistoricalEventsViewModel(private val context: Context ,private val repo: 
             _loadingState.postValue(LoadingState.LOADING)
 
             getDataFromRetrofit()
-          
-            _loadingState.postValue(LoadingState.LOADED)
 
             saveSharedPreferencesFirstStartApp(context)
+
+            _loadingState.postValue(LoadingState.LOADED)
 
         }
         else{
             if(!sharedPrefValue){
                 Log.d("AppFirstStart", "FALSE")
+                getData()
             }
 
             else{
@@ -54,7 +53,7 @@ class HistoricalEventsViewModel(private val context: Context ,private val repo: 
 
         }
 
-        getData()
+
     }
 
     fun onRefresh(){

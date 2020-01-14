@@ -5,7 +5,6 @@ import com.example.spacex_kotlin.utils.makeShortDesc
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.item_groupie.*
-import com.example.spacex_kotlin.utils.shortDesc
 
 
 class ItemGroupie(private val header: String, private val content: String, val item_id: String) : Item(){
