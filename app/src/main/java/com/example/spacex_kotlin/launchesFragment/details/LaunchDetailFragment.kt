@@ -58,5 +58,5 @@ class LaunchDetailFragment : Fragment() {
 
 
     }
-    
+
 }
