@@ -1,6 +1,7 @@
 package com.example.spacex_kotlin.rocketsFragment.details
 
 
+
 import androidx.lifecycle.*
 import com.example.spacex_kotlin.utils.LoadingState
 import com.example.spacex_kotlin.repository.SpacexRepository
@@ -12,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class RocketDetailViewModel(private val id: String, private val repo: SpacexRepository) : ViewModel() {
+class RocketDetailViewModel(id: String, repo: SpacexRepository) : ViewModel() {
 
     val _data = MediatorLiveData<RocketDetail>()
     val data: LiveData<RocketDetail>
@@ -25,5 +26,4 @@ class RocketDetailViewModel(private val id: String, private val repo: SpacexRepo
     init {
         getData()
     }
-
 }

@@ -22,7 +22,9 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
     private suspend fun getAllMissionsAsync() = api.getMissionsAsync()
     private suspend fun getAllLaunchesAsync() = api.getLaunchesAsync()
 
+
     override suspend fun populateDatabaseWithRockets(){
+
 
         val rocketList = getAllRocketsAsync()
 
@@ -118,8 +120,17 @@ class SpacexRepositoryImpl(private val api: SpacexApi, private val room: SpacexD
         room.launchDao().getLaunches()
     }
 
+
     override suspend fun getLaunchDetailFromDatabase(id: String): Launch = withContext(Dispatchers.IO) {
         room.launchDao().getLaunchDetail(id)
+    }
+
+    override suspend fun populateDatabaseWithRetrofit() = withContext(Dispatchers.IO){
+        populateDatabaseWithEvents()
+        populateDatabaseWithLaunches()
+        populateDatabaseWithMissions()
+        populateDatabaseWithRoadster()
+        populateDatabaseWithRockets()
     }
 
     override suspend fun populateDatabaseWithRetrofit() = withContext(Dispatchers.IO){

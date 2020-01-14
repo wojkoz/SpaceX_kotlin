@@ -15,9 +15,6 @@ class RocketsViewModel(private val repo: SpacexRepository, private val context: 
     val data: LiveData<List<Rocket>>
         get() = _data
 
-    private val _loadingState = MutableLiveData<LoadingState>()
-    val loadingState: LiveData<LoadingState>
-        get() = _loadingState
 
     private fun getData() = viewModelScope.launch {
         _data.postValue(repo.getRocketsFromDatabase())
