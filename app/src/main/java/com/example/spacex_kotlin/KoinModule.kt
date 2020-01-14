@@ -1,5 +1,6 @@
 package com.example.spacex_kotlin
 
+import android.util.Log
 import com.example.spacex_kotlin.historicalEventsFragment.HistoricalEventsViewModel
 import com.example.spacex_kotlin.historicalEventsFragment.details.EventDetailViewModel
 import com.example.spacex_kotlin.launchesFragment.LaunchesViewModel
@@ -23,16 +24,16 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 val viewModelModule = module{
     //main viewModels
     viewModel{
-        RocketsViewModel(get())
+        RocketsViewModel(get(), get())
     }
     viewModel {
-        HistoricalEventsViewModel(get(),get())
+        HistoricalEventsViewModel(get(), get())
     }
     viewModel {
-        MissionsViewModel(get())
+        MissionsViewModel(get(), get())
     }
     viewModel {
-        LaunchesViewModel(get())
+        LaunchesViewModel(get(), get())
     }
 
 
@@ -58,6 +59,7 @@ val retrofitModule = module {
 
 
     fun provideSpacexApi() : SpacexApi {
+
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.spacexdata.com/v3/")

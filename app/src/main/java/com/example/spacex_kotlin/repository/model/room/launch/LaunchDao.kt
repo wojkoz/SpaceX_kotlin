@@ -10,14 +10,14 @@ import androidx.room.Query
 interface LaunchDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addLaunchesFromList(launch: List<Launch>)
+    suspend fun addLaunchesFromList(launch: List<Launch>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addLaunch(launch:Launch)
+    suspend fun addLaunch(launch:Launch)
 
     @Query("SELECT * FROM launch_table")
-    fun getLaunches(): LiveData<List<Launch>>
+    suspend fun getLaunches(): List<Launch>
 
     @Query("SELECT * FROM launch_table where launch_id like :id")
-    fun getLaunchDetail(id: String): LiveData<Launch>
+    suspend fun getLaunchDetail(id: String): Launch
 }

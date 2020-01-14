@@ -13,6 +13,7 @@ import com.example.spacex_kotlin.utils.LoadingState
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.groupie.ItemGroupie
 import com.example.spacex_kotlin.repository.model.room.events.HistoricalEvent
+import com.example.spacex_kotlin.utils.LoadingState
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
@@ -65,10 +66,18 @@ class HistoricalEventsFragment : Fragment() {
 
         val section = Section()
         groupAdapter.add(section)
+
+        swipeToRefresh.setOnRefreshListener{
+
+            viewModel.onRefresh()
+
+
+            swipeToRefresh.isRefreshing = false
+        }
     }
 
     private fun updateRecycler(items: List<HistoricalEvent>){
-        val recList = items.map { item -> ItemGroupie(item.eventTitle!!, item.eventDescription!!, item.eventId) }
+        val recList = items.map { item -> ItemGroupie(item.eventTitle, item.eventDescription, item.eventId) }
         groupAdapter.clear()
         groupAdapter.add(Section(recList))
 

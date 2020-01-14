@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.spacex_kotlin.utils.LoadingState
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.groupie.ItemGroupie
 import com.example.spacex_kotlin.repository.model.room.rocket.Rocket
+import com.example.spacex_kotlin.utils.LoadingState
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
@@ -22,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RocketsFragment : Fragment() {
 
-    private val rocketsViewModel: RocketsViewModel by viewModel()
+    private val viewModel: RocketsViewModel by viewModel()
     private val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
     override fun onCreateView(
@@ -35,10 +35,23 @@ class RocketsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        rocketsViewModel.data.observe(this, Observer {
+        viewModel.data.observe(this, Observer {
             updateRecycler(it)
         })
 
+        viewModel.loadingState.observe(this, Observer {
+            when (it.status) {
+                LoadingState.Status.RUNNING -> {
+                    Toast.makeText(context,"Loading data", Toast.LENGTH_SHORT).show()
+                }
+                LoadingState.Status.SUCCESS -> {
+                    Toast.makeText(context,"Data has been updated", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(context, it.msg, Toast.LENGTH_LONG).show()
+                }
+            }
+        })
 
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL ,false)
@@ -47,7 +60,11 @@ class RocketsFragment : Fragment() {
 
         val section = Section()
         groupAdapter.add(section)
-
+        swipeToRefresh.setOnRefreshListener{
+            viewModel.onRefresh()
+            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
+            swipeToRefresh.isRefreshing = false
+        }
     }
 
     private fun updateRecycler(items: List<Rocket>){

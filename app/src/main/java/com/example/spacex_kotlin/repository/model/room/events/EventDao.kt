@@ -15,10 +15,9 @@ interface EventDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addEvent(event: HistoricalEvent)
 
-    // TODO: return id title desc
     @Query("SELECT * from historical_event_table")
-    fun getEvents(): LiveData<List<HistoricalEvent>>
+    suspend fun getEvents(): List<HistoricalEvent>
 
     @Query("SELECT * from historical_event_table WHERE event_id like :id")
-    fun getEventDetail(id: String): LiveData<HistoricalEvent>
+    suspend fun getEventDetail(id: String): HistoricalEvent
 }

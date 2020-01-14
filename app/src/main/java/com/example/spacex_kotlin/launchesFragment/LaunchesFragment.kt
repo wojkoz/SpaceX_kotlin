@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spacex_kotlin.R
 import com.example.spacex_kotlin.groupie.ItemGroupie
 import com.example.spacex_kotlin.repository.model.room.launch.Launch
+import com.example.spacex_kotlin.utils.LoadingState
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
@@ -39,6 +40,20 @@ class LaunchesFragment : Fragment() {
             updateRecycler(it)
         })
 
+        viewModel.loadingState.observe(this, Observer {
+            when (it.status) {
+                LoadingState.Status.RUNNING -> {
+                    Toast.makeText(context,"Loading data", Toast.LENGTH_SHORT).show()
+                }
+                LoadingState.Status.SUCCESS -> {
+                    Toast.makeText(context,"Data has been updated", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(context, it.msg, Toast.LENGTH_LONG).show()
+                }
+            }
+        })
+
 
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL ,false)
@@ -47,6 +62,14 @@ class LaunchesFragment : Fragment() {
         val section = Section()
         groupAdapter.add(section)
 
+        swipeToRefresh.setOnRefreshListener{
+
+            viewModel.onRefresh()
+
+            Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
+
+            swipeToRefresh.isRefreshing = false
+        }
     }
 
     private fun updateRecycler(items: List<Launch>){

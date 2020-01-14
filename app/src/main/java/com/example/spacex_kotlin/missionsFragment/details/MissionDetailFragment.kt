@@ -1,12 +1,12 @@
 package com.example.spacex_kotlin.missionsFragment.details
 
 import android.os.Bundle
+import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.example.spacex_kotlin.R
 import kotlinx.android.synthetic.main.mission_detail_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,8 +35,11 @@ class MissionDetailFragment : Fragment() {
             mission_payload.text = it.missionPayload
             mission_title.text = it.missionTitle
             mission_www.text = it.missionWebsite
-            mission_wikipedia.text = it.missionWebsite
+            mission_wikipedia.text = it.missionWikipedia
             mission_producents.text = it.missionProducent
+
+            Linkify.addLinks(mission_wikipedia, Linkify.ALL)
+            Linkify.addLinks(mission_www, Linkify.ALL)
         })
 
     }

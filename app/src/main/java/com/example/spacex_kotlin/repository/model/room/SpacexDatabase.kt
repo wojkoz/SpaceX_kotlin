@@ -16,7 +16,7 @@ import com.example.spacex_kotlin.repository.model.room.rocket.Rocket
 import com.example.spacex_kotlin.repository.model.room.rocket.RocketDao
 import com.example.spacex_kotlin.repository.model.room.rocket.RocketDetail
 
-@Database(entities = [Rocket::class, RocketDetail::class, Roadster::class, HistoricalEvent::class, Mission::class, Launch::class], version = 9, exportSchema = false)
+@Database(entities = [Rocket::class, RocketDetail::class, Roadster::class, HistoricalEvent::class, Mission::class, Launch::class], version = 10, exportSchema = false)
 abstract class SpacexDatabase : RoomDatabase(){
 
     abstract fun rocketDao(): RocketDao

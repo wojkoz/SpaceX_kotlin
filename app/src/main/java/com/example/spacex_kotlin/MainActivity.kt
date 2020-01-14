@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         navView.setNavigationItemSelectedListener(this)
 
 
-
     }
 
 

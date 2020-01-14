@@ -1,6 +1,7 @@
 package com.example.spacex_kotlin.roadsterFragment
 
 import android.os.Bundle
+import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +35,8 @@ class RoadsterDetailFragment : Fragment() {
             roadster_start_mass.text = it.mass
             roadster_wikipedia_links.text = it.wikipediaLink
             roadster_space_time_send.text = it.launch_date
+
+            Linkify.addLinks(roadster_wikipedia_links, Linkify.ALL)
         })
     }
 
